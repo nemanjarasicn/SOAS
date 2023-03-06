@@ -1,0 +1,13 @@
+<h2>{{ dialogData.title | translateIt}}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <div class="dialog-form">
+    <dynamic-form
+      (submit)="onFormSubmit($event)"
+      (reset)="close()"
+      [formlyFieldConfig]="dialogData.formlyFieldConfig"
+      [modalData]="dialogData.modalData"
+    >
+    </dynamic-form>
+  </div>
+</mat-dialog-content>

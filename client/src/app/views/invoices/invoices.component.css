@@ -1,0 +1,27 @@
+.table-content {
+  padding: 30px;
+}
+
+.mat-cell {
+  width: 120px;
+}
+
+.invoices ::ng-deep .form-scrollable,
+.invoices ::ng-deep .form-scrollable[_ngcontent] {
+  max-height: 543px;
+}
+
+.invoices ::ng-deep .mat-autocomplete-trigger {
+  width: 80%;
+}
+
+::ng-deep .address-tab-form-block-scrollable .address-dlv .form-scrollable,
+::ng-deep .address-tab-form-block-scrollable .address-dlv .form-scrollable[_ngcontent],
+::ng-deep .address-tab-form-block-scrollable .address-inv .form-scrollable,
+::ng-deep .address-tab-form-block-scrollable .address-inv .form-scrollable[_ngcontent]{
+  max-height: 245px !important;
+}
+
+.invoices ::ng-deep .align-buttons-right {
+  width: 100%;
+}

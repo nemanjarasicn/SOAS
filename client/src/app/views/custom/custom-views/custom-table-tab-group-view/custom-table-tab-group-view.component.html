@@ -1,0 +1,18 @@
+<div class="table-content">
+  <div class="mat-elevation-z8">
+    <div class="two-columns-container">
+      <div class="column-table" [hidden]="!tableVisible">
+        <custom-table [tableUpdate]="tableUpdateFunc" [tableCreate]="tableCreateFunc">
+        </custom-table>
+      </div>
+      <div class="column-form" [style.display]="shouldDisplayForm()">
+        <app-detail-view-tab-group
+          [resetForm]="resetFormFunc"
+          [refreshTable]="refreshTableFunc"
+          [refreshDetails]="refreshDetailsFunc"
+        >
+        </app-detail-view-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

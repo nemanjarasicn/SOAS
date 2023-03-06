@@ -1,0 +1,8 @@
+@import url("../dynamic-table/dynamic-table.component.css");
+
+.dynamic-p-table {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}

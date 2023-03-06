@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "SOASemo%&1923!",
+    "database": "SOAS_DEV",
+    "host": "192.168.79.138",
+    "dialect": "mssql"
+  },
+  "test": {
+    "username": "sa",
+    "password": "SOASemo%&1923!",
+    "database": "SOAS_TEST",
+    "host": "192.168.79.138",
+    "dialect": "mssql"
+  },
+  "production": {
+    "username": "sa",
+    "password": "SOASemo%&1923!",
+    "database": "SOAS",
+    "host": "192.168.79.138",
+    "dialect": "mssql"
+  }
+}

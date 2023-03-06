@@ -1,0 +1,13 @@
+<div class="table-content">
+  <div class="mat-elevation-z8">
+    <div class="two-columns-container">
+      <div [style.display]="shouldDisplayTable()" class="column-table">
+        <custom-table [tableCreate]="tableCreateFunc" [tableUpdate]="tableUpdateFunc"></custom-table>
+      </div>
+      <div [style.display]="shouldDisplayForm()" class="column-form">
+        <app-detail-view-list [refreshDetails]="" [refreshTable]="refreshTableViewsFunc"  [detailViewTableCreate]="detailViewTableCreateFunc"
+                              [resetForm]="listResetFormFunc"></app-detail-view-list>
+      </div>
+    </div>
+  </div> 
+</div>

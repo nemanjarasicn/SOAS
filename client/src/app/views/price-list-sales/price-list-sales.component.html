@@ -1,0 +1,37 @@
+<div class="price-list-sales table-content">
+  <div class="mat-elevation-z8">
+    <div class="two-columns-container">
+      <div class="column-table">
+        <custom-table [tableCreate]="tableCreateFunc" [tableUpdate]="tableUpdateFunc"></custom-table>
+      </div>
+      <div [style.display]="shouldDisplayForm()" class="column-form">
+        <div class="address-tab-table-block">
+          <div class="title-block">
+            <span class="new-position-button"></span>
+            <h3 class="detail-view-form-title">
+              {{tableTitle | translateIt}}
+            </h3>
+            <span class="new-position-button right-side"></span>
+          </div>
+          <form #tableForm="ngForm" (ngSubmit)="onPrilistPositionsFormSubmit()" class="price-list-sales-table-form">
+            <app-custom-p-table (reset)="close()"></app-custom-p-table>
+            <span class="align-buttons-left"></span>
+            <span class="align-buttons-right">
+              <button #saveButton class="create-position-button-div button-with-margin-left"
+                      icon="pi pi-save" label="{{'SAVE' | translateIt}}"
+                      pButton
+                      type="submit" disabled>
+              </button>
+              <button (click)="onTableFormCancel()"
+                      class="create-position-button-div button-with-margin-left" icon="pi pi-ban"
+                      label="{{'CANCEL' | translateIt}}"
+                      pButton type="reset">
+              </button>
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

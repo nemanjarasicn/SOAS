@@ -1,0 +1,6 @@
+mat-dialog-content .error-message {
+  background: #eee !important;
+  padding: 1rem;
+  font-family: monospace;
+  word-break: break-all;
+}

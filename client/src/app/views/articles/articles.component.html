@@ -1,0 +1,39 @@
+<app-dynamic-view-main-table
+  [fetchTableConfig]="fetchTableConfig"
+  [title]="title"
+></app-dynamic-view-main-table>
+
+
+<!--<div class="articles table-content">-->
+<!--  <div class="mat-elevation-z8">-->
+<!--    <div class="visibility: hidden;">-->
+<!--    <div class="two-columns-container">-->
+<!--      <div class="column-table" [style.display]="isMainTableViewLoaded">-->
+<!--        <custom-table [tableUpdate]="tableUpdateFunc" [tableCreate]="tableCreateFunc"></custom-table>-->
+<!--      </div>-->
+<!--      <div class="column-form" [style.display]="shouldDisplayForm()">-->
+<!--        <mat-tab-group #articlesTabGroup animationDuration="0ms" (selectedTabChange)="onArticleTabChange($event)"-->
+<!--                       [selectedIndex]="null">-->
+<!--          <mat-tab label="{{ 'ARTICLE' | translateIt}}">-->
+<!--            <custom-form [loadForm]="loadFormFunc" [resetForm]="resetFormFunc"-->
+<!--                         [saveForm]="currenciesSaveFormFunc"></custom-form>-->
+<!--          </mat-tab>-->
+<!--          <mat-tab label="{{ 'ATTRIBUTES' | translateIt}}" *ngIf="!newItemMode">-->
+<!--            <custom-form class="attributes" [loadForm]="loadAttributesForm" [resetForm]="resetFormFunc"-->
+<!--                         [saveForm]="currenciesSaveFormFunc"></custom-form>-->
+<!--            <span class="new-position-button" *ngIf="attributeLoaded">-->
+<!--              <button #addAttributeButton class="btn btn-primary debug add-attribute-button"-->
+<!--                      (click)="createAttributeItem();">-->
+<!--                {{ 'CREATE_NEW_ATTRIBUTE' | translateIt }}-->
+<!--              </button>-->
+<!--            </span>-->
+<!--            <div>-->
+<!--            </div>-->
+<!--          </mat-tab>-->
+<!--        </mat-tab-group>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<app-attribute-p-dialog [attrViewUpdate]="attrViewUpdateFunc"></app-attribute-p-dialog>-->

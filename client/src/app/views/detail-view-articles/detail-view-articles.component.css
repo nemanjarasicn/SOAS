@@ -1,0 +1,28 @@
+
+.address-tab-column-list,
+.address-tab-column-form {
+  float: left;
+}
+
+.address-tab-column-list {
+  width: 15%;
+}
+
+.address-tab-column-form {
+  width: calc(87% - 20px);
+  padding-left: 20px;
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.form .new-position-button {
+  flex: 1;
+}
+
+.form .new-position-button.right-side {
+  flex: 1;
+  text-align: center;
+  align-self: flex-end;
+}

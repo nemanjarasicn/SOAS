@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  column-gap: 16px;
+}
+
+.detail-container {
+ width: 50%;
+}
+
+.related-list-container {
+  max-width: 50%;
+}
+
+.related-list-container ::ng-deep .example-container {
+  height: calc(100% - 168px) !important;
+}

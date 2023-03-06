@@ -1,0 +1,6 @@
+{
+  "host": "mail1.emotion-24.de",
+  "port": 25,
+  "secure": false,
+  "rejectUnauthorized": false
+}

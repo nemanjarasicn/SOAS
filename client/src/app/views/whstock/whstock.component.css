@@ -1,0 +1,113 @@
+.table-content {
+  padding: 30px;
+}
+
+table {
+  width: 100%;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  display: block;
+  background-color: #ffffff;
+}
+
+.mat-cell {
+  /*width: 195px;*/
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.two-columns-container {
+  display: flex;
+}
+
+.column-table,
+.column-form {
+  float: left;
+}
+
+.column-table {
+  flex: 1;
+}
+
+.column-form {
+  flex: 1;
+  min-width: 700px;
+  background: white;
+  padding: 30px;
+  margin-left: 10px;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.mat-list-item.selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.align_buttons_right {
+  text-align: right;
+  padding-top: 20px;
+}
+
+.selected {
+  background-color: lightgrey;
+}
+
+.address_header {
+  display: flex;
+}
+
+.address_header .mat-icon-button {
+  float: right;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.scrollableTabItem {
+  overflow-y: auto;
+  max-height: 620px;
+}
+
+form {
+  width: 100%;
+}
+
+form .formTitle {
+
+}
+
+.mat-subheader {
+  padding: 0px;
+}
+
+.create-btn {
+  width: 110px;
+}
+
+.delete-btn {
+  color: #3f51b5;
+}

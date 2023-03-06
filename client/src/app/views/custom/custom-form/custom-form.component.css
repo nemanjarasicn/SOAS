@@ -1,0 +1,22 @@
+
+form {
+  width: 100%;
+}
+
+form .formTitle {
+
+}
+
+.mat-form-field {
+  display: block;
+  background-color: #ffffff;
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.align_buttons_right {
+   text-align: right;
+   padding-top: 20px;
+ }

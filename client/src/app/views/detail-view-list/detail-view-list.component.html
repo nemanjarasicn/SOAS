@@ -1,0 +1,50 @@
+<div class="tab-table-block">
+  <div
+    class="title-span"
+    *ngIf="!newItemMode"
+  >
+    <div class="title-block">
+      <span class="new-position-button"></span>
+      <h3 style="">
+        {{ tableTitle | translateIt}}
+      </h3>
+      <span class="new-position-button right-side"></span>
+    </div>
+    <div class="create-detail_view-button">
+      <button (click)="createItem();" *ngIf="showDetailViewCreateButton" class="p-button-raised p-button-text"
+              icon="pi pi-plus" label="{{ createDetailviewButtonTitle | translateIt}}"
+              pButton
+              pRipple
+              type="button"
+              >
+        <!--<mat-icon aria-label="icon-button">add</mat-icon>-->
+      </button>
+    </div>
+    <div class="row-table" [style.display]="shouldDisplayTable()">
+      <custom-table [tableUpdate]="tableUpdateFunc" [tableCreate]="tableCreateFunc"></custom-table>    
+    </div>
+  </div>
+
+  <div
+    class="address-tab-form-block-scrollable"
+    *ngIf="newItemMode"
+  >
+    <div style="text-align:center">
+      <h3 *ngIf="!newItemMode">
+        {{ listTitle | translateIt}}
+      </h3>
+      <div *ngIf="newItemMode">
+        <h3 *ngIf=!IsDetailView >
+          {{ createTitle | translateIt}}
+        </h3>
+        <h3 *ngIf=IsDetailView >
+          {{ detailViewCreateTitle | translateIt}}
+        </h3>
+      </div>
+    </div>
+    <div class="form">
+      <dynamic-form (submit)="onFormSubmit()" (reset)="close()">
+      </dynamic-form>
+    </div>
+  </div>
+</div>

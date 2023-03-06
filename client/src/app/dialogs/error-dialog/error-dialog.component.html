@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{'ERROR_OCCURRED' | translateIt}}</h1>
+<mat-dialog-content class="mat-typography">
+  <p *ngIf="data.status">
+    <b>Status Code:</b> {{ data.status }}
+  </p>
+  <p *ngIf="data.statusText">
+    <b>Status Text:</b> {{ data.statusText }}
+  </p>
+  <p *ngIf="data.description">
+    <b>Description:</b> {{ data.description }}
+  </p>
+  <p class="error-message" [innerHTML]="data?.message"></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="primary">{{'OK' | translateIt | titlecase }}</button>
+</mat-dialog-actions>

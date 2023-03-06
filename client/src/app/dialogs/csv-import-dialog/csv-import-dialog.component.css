@@ -1,0 +1,81 @@
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.mat-dialog-container {
+    text-align: center;
+  }
+
+  .mat-dialog-actions {
+    display: block;
+  }
+
+  .mat-dialog-content {
+    text-align: center !important;
+    padding-bottom: 25px !important;
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+
+  .btn.btn-success {
+    float: right;
+  }
+
+  .btn.btn-secondary {
+    float: left;
+  }
+
+  .csv-choose {
+    padding: 50px;
+  }
+
+  .mat-dialog-actions .mat-button-base+.mat-button-base {
+    margin-left: 365px;
+  }
+
+  .mat-button.mat-accent,
+  .mat-icon-button.mat-accent,
+  .mat-stroked-button.mat-accent {
+    color: rgba(0,0,0,.54);
+  }
+
+  .mat-dialog-container {
+    text-align: center;
+  }
+
+  .mat-dialog-actions {
+    display: block;
+  }
+
+  .mat-dialog-content .inputField {
+    padding: 25px 20px 50px;
+    width: 100%;
+  }
+
+  .mat-menu-item .mat-icon {
+    margin-right: 16px;
+    vertical-align: middle;
+  }
+  .file-upload-input-container{
+    background-color: rgba(0,0,0,.04);
+    border: #ddd solid 1px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+  }
+  .csv-spinner-container{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: rgba(0,0,0,0.5);
+    width: 100%;;
+  }

@@ -1,0 +1,141 @@
+<div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<form #dialogForm>
+  <p-dialog #pDialog header="{{title | translateIt}}" [(visible)]="displayDialog"
+            [modal]="true" [closable]="false"
+            [style]="{width: dialogWidth, margin: dialogMargin}">
+    <div class="p-grid ui-fluid" *ngIf="orderPosition">
+      <div class="p-col-4">
+        <label for="ORDERS_NUMBER">{{ 'ORDERS_NUMBER' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <input type="text"
+               pInputText
+               id="ORDERS_NUMBER"
+               [(ngModel)]="orderPosition.ORDERS_NUMBER"
+               name="ORDERS_NUMBER"
+               [disabled]="getDialogColsItemDisabled('ORDERS_NUMBER')"/>
+      </div>
+      <div class="p-col-4">
+        <label for="ITMNUM">{{ 'ITMNUM' | translateIt | titlecase}} ({{itmnumActiveOnlyText}})</label>
+      </div>
+      <div class="p-col-8">
+        <p-autoComplete id="ITMNUM"
+                        #dlgAutocomplete
+                        [(ngModel)]="orderPosition.ITMNUM"
+                        name="ITMNUM"
+                        [suggestions]="filterItmnums"
+                        (completeMethod)="filterItmnum($event, 'ITMNUM', 'ITMNUM', dlgAutocomplete)"
+                        (onKeyUp)="manageKeyUp($event)"
+                        (onSelect)="callResetAutocomplete()"
+                        (onClear)="callResetAutocomplete()"
+                        (change)="inputChangeValidation($event, 'ITMNUM', 'ITMNUM')"
+                        [minLength]="1" [size]="95"
+                        [autofocus]="true"
+                        required></p-autoComplete>
+      </div>
+      <div class="p-col-4">
+        <label for="ITMDES">{{ 'ITMDES' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <textarea id="ITMDES" #dlgItemDes [(ngModel)]="orderPosition.ITMDES"
+                  [disabled]="getDialogColsItemDisabled('ITMDES')"
+                  name="ITMDES" rows="3" cols="97" pInputTextarea>
+        </textarea>
+      </div>
+      <div class="p-col-4">
+        <label for="CATEGORY_SOAS">{{ 'CATEGORY_SOAS' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <input type="text" pInputText id="CATEGORY_SOAS" [(ngModel)]="orderPosition.CATEGORY_SOAS"
+               name="CATEGORY_SOAS"
+               [disabled]="getDialogColsItemDisabled('CATEGORY_SOAS')"/>
+      </div>
+      <div class="p-col-4">
+        <label for="ORDER_QTY">{{ 'ORDER_QTY' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <p-inputNumber id="ORDER_QTY"
+                       #dlgOrderQty
+                       [(ngModel)]="orderPosition.ORDER_QTY"
+                       name="ORDER_QTY"
+                       mode="decimal"
+                       placeholder="1 bis 100"
+                       [showButtons]="true"
+                       (change)="inputChangeValidation($event, 'ORDER_QTY', '_0_2')"
+                       [min]="1" [max]="100" required></p-inputNumber>
+      </div>
+      <div class="p-col-4">
+        <label for="PRICE_BRU">{{ 'PRICE_BRU' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <p-inputNumber id="PRICE_BRU"
+                       #dlgPriceBru
+                       [(ngModel)]="orderPosition.PRICE_BRU"
+                       name="PRICE_BRU"
+                       mode="decimal"
+                       placeholder="1 bis 1000"
+                       locale="de-DE"
+                       [minFractionDigits]="2" [maxFractionDigits]="5"
+                       [disabled]="getDialogColsItemDisabled('PRICE_BRU')"
+                       [attr.required]="getDialogColsItemDisabled('PRICE_BRU') ? 'required' : null"
+        ></p-inputNumber>
+      </div>
+      <div class="p-col-4">
+        <label for="PRICE_NET">{{ 'PRICE_NET' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <p-inputNumber id="PRICE_NET"
+                       #dlgPriceNet
+                       [(ngModel)]="orderPosition.PRICE_NET"
+                       name="PRICE_NET"
+                       mode="decimal"
+                       placeholder="1 bis 1000"
+                       (onBlur)="inputChangeValidation($event, 'PRICE_NET', '_0_5')"
+                       locale="de-DE"
+                       [minFractionDigits]="2" [maxFractionDigits]="5"
+                       [disabled]="getDialogColsItemDisabled('PRICE_NET')"
+                       [attr.required]="getDialogColsItemDisabled('PRICE_NET') ? 'required' : null"
+        ></p-inputNumber>
+      </div>
+      <div class="p-col-4">
+        <label for="TAX_AMOUNT">{{ 'TAX_AMOUNT' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <p-inputNumber id="TAX_AMOUNT"
+                       #dlgPriceNet
+                       [(ngModel)]="orderPosition.TAX_AMOUNT"
+                       name="TAX_AMOUNT"
+                       mode="decimal"
+                       placeholder="1 bis 1000"
+                       (onBlur)="inputChangeValidation($event, 'TAX_AMOUNT', '_0_5')"
+                       locale="de-DE"
+                       [minFractionDigits]="2" [maxFractionDigits]="5"
+                       [disabled]="getDialogColsItemDisabled('TAX_AMOUNT')"
+                       [attr.required]="getDialogColsItemDisabled('TAX_AMOUNT') ? 'required' : null"
+        ></p-inputNumber>
+      </div>
+      <div class="p-col-4">
+        <label for="CURRENCY">{{ 'CURRENCY' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <p-dropdown id="CURRENCY" [options]="pCurrencies" [(ngModel)]="orderPosition.CURRENCY"
+                    name="CURRENCY" [disabled]="getDialogColsItemDisabled('CURRENCY')"
+                    [style]="{'width':'95%'}"></p-dropdown>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button"
+                #dlgSaveButton
+                pButton icon="pi pi-check"
+                (click)="createNewPositionFunc()"
+                label="{{'SAVE' | translateIt | titlecase}}"
+                [disabled]="isSaveButtonDisabled()"></button>
+        <button type="button" #dlgCancelButton pButton icon="pi pi-times" (click)="cancelSavePositionDialog()"
+                label="{{ 'CANCEL' | translateIt | titlecase}}" class="ui-button-secondary"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</form>

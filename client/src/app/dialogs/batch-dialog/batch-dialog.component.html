@@ -1,0 +1,257 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h3>{{ description | translateIt }}</h3>
+    <form (ngSubmit)="onSubmit()" #batchForm="ngForm">
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-danger':
+            batchFunction.invalid &&
+            (batchFunction.dirty || batchFunction.touched),
+          'has-success':
+            batchFunction.valid &&
+            (batchFunction.dirty || batchFunction.touched)
+        }"
+      >
+        <label>{{ "BATCH_FUNCTION" | translateIt }}</label>
+        <p-autoComplete
+          id="BATCH_FUNCTION"
+          #funcAutocomplete
+          [(ngModel)]="model.BATCH_FUNCTION"
+          name="fromItmnum"
+          type="search"
+          [suggestions]="suggestionFunctions"
+          (completeMethod)="search($event)"
+          (onSelect)="initFields($event)"
+          [forceSelection]="true"
+          required
+        >
+        </p-autoComplete>
+        <div
+          class="form-control-feedback"
+          *ngIf="
+            batchFunction.errors &&
+            (batchFunction.dirty || batchFunction.touched)
+          "
+        >
+          <p *ngIf="batchFunction.errors.required">
+            Function is required (function_name)
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-checkbox
+          id="batch_active"
+          [(ngModel)]="model.BATCH_ACTIVE"
+          name="batchActive"
+        >
+          {{ "BATCH_ACTIVE" | translateIt }}
+        </mat-checkbox>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-danger':
+            batchName.invalid && (batchName.dirty || batchName.touched),
+          'has-success':
+            batchName.valid && (batchName.dirty || batchName.touched)
+        }"
+      >
+        <label>{{ "BATCH_NAME" | translateIt }}</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          placeholder="Run SQL => Print PDF"
+          name="batchName"
+          [(ngModel)]="model.BATCH_NAME"
+        />
+        <div
+          class="form-control-feedback"
+          *ngIf="batchName.errors && (batchName.dirty || batchName.touched)"
+        >
+          <p *ngIf="batchName.errors.required">
+            Name is required (max 50 chars)
+          </p>
+        </div>
+      </div>
+      <div class="form-group has-danger" *ngIf="hasParams">
+        <label style="display: block">{{ "BATCH_PARAMS" | translateIt }}</label>
+        <div
+          *ngFor="
+            let item of model.BATCH_PARAMS | keyvalue;
+            trackBy: trackByIndex
+          "
+        >
+          <label style="color: #a94442; margin-top: 3px; font-weight: 600"
+            >{{ item.key }}
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="value"
+            [name]="item.key"
+            [(ngModel)]="model.BATCH_PARAMS[item.key]"
+          />
+        </div>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-danger':
+            batchDescription.invalid &&
+            (batchDescription.dirty || batchDescription.touched),
+          'has-success':
+            batchDescription.valid &&
+            (batchDescription.dirty || batchDescription.touched)
+        }"
+      >
+        <label>{{ "BATCH_DESCRIPTION" | translateIt }}</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          name="batchDescription"
+          placeholder="Runs SQL Script entered into Batchcode field.
+               Received results will be formatted and printed out as PDF file."
+          [(ngModel)]="model.BATCH_DESCRIPTION"
+        />
+        <div
+          class="form-control-feedback"
+          *ngIf="
+            batchDescription.errors &&
+            (batchDescription.dirty || batchDescription.touched)
+          "
+        >
+          <p *ngIf="batchDescription.errors.required">
+            Description is required
+          </p>
+        </div>
+      </div>
+      <div class="flex-fields">
+        <div class="form-group">
+          <label>Batch Interval Minutes</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="0-59 oder *"
+            validMinutes
+            [(ngModel)]="model.BATCH_INTERVAL_MINUTES"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <div class="form-group field-padding-left">
+          <label>Batch Interval Hours</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="0-23 oder *"
+            validHours
+            [(ngModel)]="model.BATCH_INTERVAL_HOURS"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <div class="form-group field-padding-left">
+          <label>Batch Interval Day Of Month</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="1-31 oder *"
+            validDays
+            [(ngModel)]="model.BATCH_INTERVAL_DAYS"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+      </div>
+      <div class="flex-fields">
+        <div class="form-group">
+          <label>Batch Interval Months</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="1-12 oder *"
+            validMonths
+            [(ngModel)]="model.BATCH_INTERVAL_MONTHS"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <div class="form-group field-padding-left">
+          <label>Batch Interval Day of Week</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="0-7 oder *"
+            validDayOfMonths
+            [(ngModel)]="model.BATCH_INTERVAL_DAYOFMONTH"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-checkbox
+          id="batch_code_required"
+          [(ngModel)]="model.BATCH_CODE_REQUIRED"
+          name="batchCodeRequired"
+          (change)="toggleBatchCodeRequired($event)"
+        >
+          {{ "BATCH_CODE_REQUIRED" | translateIt }}
+        </mat-checkbox>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-danger':
+            batchCode.invalid && (batchCode.dirty || batchCode.touched),
+          'has-success':
+            batchCode.valid && (batchCode.dirty || batchCode.touched)
+        }"
+        *ngIf="model.BATCH_CODE_REQUIRED"
+      >
+        <label>BATCH_CODE</label>
+        <textarea
+          class="form-control"
+          id="batch_code"
+          placeholder='{"mssql_query":"
+                  SELECT * FROM SOAS.dbo.DELIVERY_NOTES WHERE DELIVERY_NOTES_NUMBER = &apos;50019LI000004&apos;;'
+          name="batchCode"
+          required
+          [(ngModel)]="model.BATCH_CODE"
+        >
+        </textarea>
+        <div
+          class="form-control-feedback"
+          *ngIf="batchCode.errors && (batchCode.dirty || batchCode.touched)"
+        >
+          <p *ngIf="batchCode.errors.required">Batch Code is required</p>
+        </div>
+      </div>
+      <div class="align_buttons_right">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="newBatch(); batchForm.reset()"
+          [disabled]="editMode"
+        >
+          {{ "CREATE_NEW_BATCH" | translateIt }}
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!batchForm.valid"
+        >
+          {{ "SAVE" | translateIt }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="close()">
+          {{ "CANCEL" | translateIt }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.table-content {
+  padding: 30px;
+}
+
+.column-form ::ng-deep .tab-table-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 650px;
+}

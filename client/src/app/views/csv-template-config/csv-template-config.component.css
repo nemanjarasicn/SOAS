@@ -1,0 +1,37 @@
+.table-content {
+    padding: 30px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .two-columns-container {
+    display: flex;
+  }
+
+  .column-table,
+  .column-form {
+    float: left;
+    height: 2000px;
+  }
+
+  .column-table {
+    flex: 1;
+  }
+
+  .column-form {
+    flex: 1;
+    min-width: 700px;
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    margin-left: 10px;
+  }
+
+  .mat-elevation-z8 {
+    box-shadow: none;
+  }

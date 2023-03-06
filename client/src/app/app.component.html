@@ -1,0 +1,85 @@
+<div *ngIf="!isLoggedIn()">
+  <router-outlet name="notloggedin"></router-outlet>
+</div>
+<div *ngIf="isLoggedIn()">
+  <p-toast key="main"></p-toast>
+  <app-site-header *ngIf="isLoggedIn()" class="site-header"></app-site-header>
+  <mat-sidenav-container *ngIf="isLoggedIn()" class="site-container">
+    <mat-sidenav #sidenav
+                 [fixedBottomGap]="options.value.bottom"
+                 [fixedInViewport]="siteNavFixed"
+                 [fixedTopGap]="options.value.top"
+                 [opened]="sidenavOpened"
+                 class="site-sidenav"
+                 mode="side"
+                 opened>
+      <nav class="nav nav-pills">
+        <mat-accordion class="field-container button">
+          <mat-expansion-panel *ngFor="let parent of parentMenuItems">
+            <mat-expansion-panel-header>
+              <mat-icon>toc</mat-icon>
+              <span class="mat-expansion-panel-header-text">{{ parent.title | translateIt }}</span>
+            </mat-expansion-panel-header>
+            <span *ngFor="let child of parent.menuItems">
+            <button (click)="this.showTable(child.refTable)"
+                    *ngIf="child.type=='button'"
+                    class="{{(this.selectedMenuItem === child.refTable) ? 'selected-menu-item' : ''}}"
+                    id="{{child.id}}"
+                    data-icon="{{ child.icon }}"
+                    mat-raised-button
+                    matTooltip="">
+              <span class="material-icons soas-custom-icon">{{ child.icon }}</span>
+              {{ child.title | translateIt }}
+            </button>
+            <div *ngIf="child.type=='expanel'">
+               <mat-accordion class="field-subcontainer button">
+                  <mat-expansion-panel *ngFor="let subparent of parentSubMenuItems">
+                    <mat-expansion-panel-header>
+                      <span class="mat-expansion-panel-header-text">{{ subparent.title | translateIt }}</span>
+                    </mat-expansion-panel-header>
+                    <span *ngFor="let subchild of subparent.menuItems">
+                    <button (click)="this.showTable(subchild.refTable)"
+                            *ngIf="subchild.type !=='csvButton'"
+                            class="{{(this.selectedMenuItem === subchild.refTable) ? 'selected-menu-item' : ''}}"
+                            id="{{subchild.id}}"
+                            mat-raised-button
+                            matTooltip="">
+                      <span class="material-icons soas-custom-icon">{{ subchild.icon }}</span>
+                      {{ subchild.title | translateIt }}
+                    </button>
+                    <div *ngIf="subchild.type=='csvButton'">
+                      <mat-accordion class="field-subcontainer button">
+                         <mat-expansion-panel *ngFor="let subparent of childSubMenuItems">
+                           <mat-expansion-panel-header>
+                             <span class="mat-expansion-panel-header-text">{{ subparent.title | translateIt }}</span>
+                           </mat-expansion-panel-header>
+                           <button (click)="this.showTable(subchild.refTable)"
+                                   *ngFor="let subchild of subparent.menuItems"
+                                   class="{{(this.selectedMenuItem === subchild.refTable) ? 'selected-menu-item' : ''}}"
+                                   id="_{{subchild.id}}"
+                                   mat-raised-button
+                                   matTooltip="">
+                             <span class="material-icons soas-custom-icon">{{ subchild.icon }}</span>
+                             {{ subchild.title | translateIt }}
+                           </button>
+                         </mat-expansion-panel>
+                      </mat-accordion>
+                   </div>
+                  </span>
+                  </mat-expansion-panel>
+               </mat-accordion>
+            </div>
+            </span>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content [formGroup]="options">
+      <router-outlet class="site-router-outlet-content"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <app-site-footer (sidenavOpenedClicked)="toggleSidenav()"
+                   *ngIf="isLoggedIn()"
+                   class="site-footer">
+  </app-site-footer>
+</div>

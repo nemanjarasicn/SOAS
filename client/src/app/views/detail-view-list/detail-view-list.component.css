@@ -1,0 +1,80 @@
+
+.tab-column-list,
+.tab-column-form {
+  float: left;
+}
+
+.tab-column-list {
+  width: 15%;
+}
+
+.tab-column-form {
+  width: calc(87% - 20px);
+  padding-left: 20px;
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.align-buttons-right {
+  text-align: right;
+  margin-top: -34px;
+}
+
+.mat-list-item.selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.selected {
+  background-color: lightgrey;
+}
+
+
+.tab-table-block {
+  display: block;
+  margin: 0;
+}
+
+.tab-table-block .title-block {
+  display: flex;
+}
+
+.tab-table-block .new-position-button {
+  flex: 1;
+}
+
+.tab-table-block .new-position-button.right-side {
+  flex: 1;
+  text-align: center;
+  align-self: flex-end;
+}
+
+.tab-table-block h3 {
+  flex: 1;
+  text-align:center;
+}
+
+.tab-table-block .table-block-scrollable {
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.tab-table-block .table-block-scrollable table {
+  margin: auto;
+  width: 100%;
+}
+
+.tab-form-block {
+  display: inline-block;
+}
+
+.address-tab-form-block-scrollable .scrollable-table-form {
+  max-height: 340px !important;
+}
+
+
+.create-detail_view-button  {
+  display: flex;
+  justify-content: flex-end;
+}

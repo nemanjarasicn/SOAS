@@ -1,0 +1,365 @@
+<div class="loading-shade" *ngIf="isLoadingResults">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-tab-group #tabs animationDuration="0ms" (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="0">
+  <ng-template md-tab-label>{{ tabsService.customerTitle | translateIt}}</ng-template>
+
+  <mat-tab label="{{ tabsService.customerTitle | translateIt}}">
+    <!-- Lazy load below component -->
+    <ng-template matTabContent>
+
+      <mat-tab-group #custabs animationDuration="0ms" (selectedIndexChange)="selectedSubIndexChange($event)" [selectedIndex]="0">
+
+        <mat-tab label="{{ subTabGroupTabNamesEnum.CUSTOMER_DETAILS | translateIt}}">
+          <!-- Lazy load below component -->
+          <ng-template matTabContent>
+            <div class="form">
+              <div class="detail-view-form-title">
+                <h3 *ngIf="!newCustomerMode">
+                  {{'CUSTOMER' | translateIt}}
+                </h3>
+                <h3 *ngIf="newCustomerMode">
+                  {{'CREATE_NEW_CUSTOMER' | translateIt}}
+                </h3>
+              </div>
+              <dynamic-form (submit)="onCustomerFormSubmit()" (reset)="close()">
+              </dynamic-form>
+            </div>
+            <div>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="{{ subTabGroupTabNamesEnum.ADDRESS_DELIVERIES | translateIt}}" *ngIf="!this.newCustomerMode">
+          <ng-template matTabContent>
+            <div class="address-tab-table-block" *ngIf="!newCustomerAddrDLVMode">
+              <div class="title-block detail-view-form-title">
+                <span class="new-position-button"></span>
+                <h3 style="">
+                  {{'DELIVERY_ADDRESSES' | translateIt}}
+                </h3>
+                <div class="new-position-button right-side">
+                  <button
+                    class="create-button"
+                    mat-icon-button
+                    color="primary"
+                    (click)="createAddressItem(getCustomerAddressType('DLV'));"
+                    matTooltip="{{ tabsService.createTooltip | translateIt}}"
+                    *ngIf="!tabGroupFormService.formDisabledFlag"
+                  >
+                    {{ tabsService.createAddressTitle | translateIt}} <mat-icon aria-label="add">add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="row-table" *ngIf="!newCustomerAddrDLVMode">
+                <div class="column-table">
+                  <custom-table [tableUpdate]="updateTableFunc" [tableCreate]="createTableFunc"></custom-table>
+                </div>
+              </div>
+            </div>
+            <div [ngClass]="{ 'address-tab-form-block-scrollable': !newCustomerAddrDLVMode, 'address-tab-form-block':
+              newCustomerAddrDLVMode }">
+              <div class="detail-view-form-title">
+                <h3 *ngIf="!newCustomerAddrDLVMode">
+                  {{'ADDRESS_DELIVERY' | translateIt}}
+                </h3>
+                <h3 *ngIf="newCustomerAddrDLVMode">
+                  {{'NEW_ADDRESS' | translateIt}}
+                </h3>
+              </div>
+              <div class="address-dlv form">
+                <dynamic-form (submit)="onCustomersAddrFormSubmit()" (reset)="close()">
+                </dynamic-form>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="{{ subTabGroupTabNamesEnum.ADDRESS_INVOICES | translateIt}}" *ngIf="!this.newCustomerMode">
+          <ng-template matTabContent>
+            <div class="address-tab-table-block" *ngIf="!newCustomerAddrINVMode">
+              <div class="title-block detail-view-form-title">
+                <span class="new-position-button"></span>
+                <h3 style="">
+                  {{'INVOICES_ADDRESSES' | translateIt}}
+                </h3>
+                <span class="new-position-button right-side">
+              <button class="create-button" mat-icon-button color="primary"
+                      (click)="createAddressItem(getCustomerAddressType('INV'));"
+                      matTooltip="{{ tabsService.createTooltip | translateIt}}"
+                      *ngIf="!tabGroupFormService.formDisabledFlag">
+                {{ tabsService.createAddressTitle | translateIt}}
+                <mat-icon aria-label="add">add</mat-icon>
+              </button>
+            </span>
+              </div>
+              <div class="row-table" *ngIf="!newCustomerAddrINVMode">
+                <div class="column-table">
+                  <custom-table [tableUpdate]="updateTableFunc" [tableCreate]="createTableFunc"></custom-table>
+                </div>
+              </div>
+            </div>
+            <div [ngClass]="{ 'address-tab-form-block-scrollable': !newCustomerAddrINVMode, 'address-tab-form-block':
+            newCustomerAddrINVMode }">
+              <div class="detail-view-form-title">
+                <h3 *ngIf="!newCustomerAddrINVMode">
+                  {{'ADDRESS_INVOICE' | translateIt}}
+                </h3>
+                <h3 *ngIf="newCustomerAddrINVMode">
+                  {{'NEW_ADDRESS' | translateIt}}
+                </h3>
+              </div>
+              <div class="address-inv form">
+                <dynamic-form (submit)="onCustomersAddrFormSubmit()" (reset)="close()">
+                </dynamic-form>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="{{ tabsService.ordersTitle | translateIt}}">
+    <ng-template matTabContent>
+      <mat-tab-group #ordtabs animationDuration="0ms" (selectedIndexChange)="selectedSubIndexChange($event)" [selectedIndex]="0">
+        <mat-tab #ordtabdetails label="{{ subTabGroupTabNamesEnum.ORDER_DETAILS | translateIt}}">
+          <ng-template matTabContent>
+            <div class="orders-tab-column-form">
+              <div class="form">
+                <div class="detail-view-form-title">
+                  <h3 *ngIf="!newOrderMode">
+                    {{ tabsService.ordersDetailsFormTitle | translateIt}}
+                  </h3>
+                  <h3 *ngIf="newOrderMode">
+                    {{'CREATE_NEW_ORDER' | translateIt}}
+                  </h3>
+                </div>
+                <dynamic-form (submit)="onCustomerFormSubmit()" (reset)="close()">
+                </dynamic-form>
+                <span class="align-buttons-left">
+                  <button type="submit" pButton #createDNButton icon="pi pi-plus"
+                          (click)="createDeliveryNote()"
+                          class="createDNButton"
+                          *ngIf="tabGroupFormService.formDataAvailableFlag &&
+                          !this.newOrderMode &&
+                          tabGroupFormService.orderPayedFlag &&
+                          !tabGroupFormService.formDisabledFlag"
+                          label="{{ 'CREATE_DELIVERY_NOTE' | translateIt }}">
+                  </button>
+                </span>
+                <span *ngIf="!tabGroupFormService.formDataAvailableFlag">{{'NO_ORDER_AVAILABLE' | translateIt}}</span>
+              </div>
+              <div>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab #ordtabpositions label="{{ subTabGroupTabNamesEnum.ORDER_POSITIONS | translateIt}}" *ngIf="!this.newOrderMode">
+          <ng-template matTabContent>
+            <div class="address-tab-table-block">
+              <div class="title-block">
+                <span class="new-position-button"></span>
+                <h3 style="margin: 25px 0;">
+                  {{'ORDER_POSITIONS' | translateIt}}
+                </h3>
+                <span class="new-position-button right-side"></span>
+              </div>
+
+              <form #tableForm="ngForm" class="orders-positions-table-form" (ngSubmit)="onOrderPositionsFormSubmit()">
+
+                <app-custom-p-table (reset)="close()"></app-custom-p-table>
+
+                <span class="align-buttons-left">
+                  <button type="button" pButton icon="pi pi-plus" class="create-position-button-div"
+                          *ngIf="positionsService.isCreatePositionButtonVisible()"
+                          (click)="pDialogService.showDialogToAdd()"
+                          label="{{ tabsService.createOrderPositionTitle | translateIt}}">
+                  </button>
+                </span>
+                <span class="align-buttons-right">
+                     <button type="button" pButton icon="pi pi-replay"
+                             class="create-position-button-div button-with-margin-left"
+                             *ngIf="isAllocateButtonVisible()" (click)="onTableFormAllocate()"
+                             label="{{'ALLOCATE' | translateIt}}">
+                     </button>
+                     <button type="submit" pButton #saveButton icon="pi pi-save"
+                             class="create-position-button-div button-with-margin-left"
+                             *ngIf="isSaveButtonVisible()" label="{{'SAVE' | translateIt}}">
+                     </button>
+                     <button type="reset" pButton icon="pi pi-ban"
+                             class="create-position-button-div button-with-margin-left"
+                             (click)="onTableFormCancel()" label="{{'CANCEL' | translateIt}}">
+                     </button>
+                </span>
+              </form>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="{{ tabsService.delNotesTitle | translateIt}}">
+    <ng-template matTabContent>
+      <mat-tab-group #deltabs animationDuration="0ms" (selectedIndexChange)="selectedSubIndexChange($event)" [selectedIndex]="0">
+
+        <mat-tab label="{{ subTabGroupTabNamesEnum.DELIVERY_NOTES_DETAILS | translateIt}}">
+          <ng-template matTabContent>
+
+            <div class="orders-tab-column-form">
+              <div class="form">
+                <div class="detail-view-form-title">
+                  <h3>
+                    {{tabsService.delNoteFormTitle | translateIt}}
+                  </h3>
+                </div>
+                <dynamic-form (submit)="onCustomerFormSubmit()" (reset)="close()">
+                </dynamic-form>
+                <span class="align-buttons-left">
+                  <button type="submit" pButton #createINVButton icon="pi pi-plus"
+                          (click)="createInvoice()"
+                          class="createINButton"
+                          *ngIf="tabGroupFormService.formDataAvailableFlag && tabGroupFormService.deliveryNoteReleaseFlag"
+                          label="{{ 'CREATE_INVOICE' | translateIt }}">
+                  </button>
+                  <button type="submit" pButton #deleteDLNButton icon="pi pi-minus"
+                          (click)="deleteDeliveryNote()"
+                          class="deleteDNButton"
+                          *ngIf="tabGroupFormService.formDataAvailableFlag && !tabGroupFormService.deliveryNoteReleaseFlag"
+                          label="{{ 'DELETE_DELIVERY_NOTE' | translateIt }}">
+                  </button>
+                </span>
+                <span *ngIf="!tabGroupFormService.formDataAvailableFlag">{{'NO_DELIVERY_NOTE_AVAILABLE' | translateIt}}</span>
+              </div>
+              <div>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="{{ subTabGroupTabNamesEnum.DELIVERY_NOTES_POSITIONS | translateIt}}" *ngIf="!this.newDeliveryNoteMode">
+          <ng-template matTabContent>
+
+            <div class="address-tab-table-block">
+
+              <div class="title-block">
+                <span class="new-position-button"></span>
+                <h3 style="margin: 25px 0;">
+                  {{'DELIVERY_NOTES_POSITIONS' | translateIt}}
+                </h3>
+                <span class="new-position-button right-side"></span>
+              </div>
+
+              <form #dlnTableForm="ngForm" (ngSubmit)="onCustomersAddrFormSubmit()">
+                <app-custom-p-table (reset)="close()"></app-custom-p-table>
+                <span class="align-buttons-left"></span>
+                <span class="align-buttons-right">
+                  <button type="reset" pButton icon="pi pi-ban"
+                          class="create-position-button-div button-with-margin-left"
+                          (click)="onTableFormCancel()"
+                          label="{{'CANCEL' | translateIt}}">
+                  </button>
+                </span>
+              </form>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+      </mat-tab-group>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="{{ tabsService.invoicesTitle | translateIt}}">
+    <ng-template matTabContent>
+      <mat-tab-group #invtabs animationDuration="0ms" (selectedIndexChange)="selectedSubIndexChange($event)" [selectedIndex]="0">
+
+        <mat-tab label="{{ subTabGroupTabNamesEnum.INVOICE_DETAILS | translateIt}}">
+          <ng-template matTabContent>
+            <div class="orders-tab-column-form">
+              <div class="form">
+                <div class="detail-view-form-title">
+                <h3 *ngIf="!newInvoiceMode">
+                  {{ tabsService.invoiceFormTitle | translateIt}}
+                </h3>
+                <h3 *ngIf="newInvoiceMode">
+                  {{'CREATE_NEW_INVOICE' | translateIt}}
+                </h3>
+                </div>
+                <dynamic-form (submit)="onCustomerFormSubmit()" (reset)="close()">
+                </dynamic-form>
+                <span *ngIf="!tabGroupFormService.formDataAvailableFlag">{{'NO_INVOICE_AVAILABLE' | translateIt}}</span>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="{{ subTabGroupTabNamesEnum.INVOICES_POSITIONS | translateIt}}" *ngIf="!this.newInvoiceMode">
+          <ng-template matTabContent>
+
+            <div class="address-tab-table-block">
+
+              <div class="title-block">
+                <span class="new-position-button"></span>
+                <h3 style="margin: 25px 0;">
+                  {{'INVOICES_POSITIONS' | translateIt}}
+                </h3>
+                <span class="new-position-button right-side"></span>
+              </div>
+
+              <form #invTableForm="ngForm" (ngSubmit)="onCustomersAddrFormSubmit()">
+                <app-custom-p-table (reset)="close()"></app-custom-p-table>
+                <span class="align-buttons-left">
+                  <button (click)="pDialogService.showDialogToAdd()"
+                          *ngIf="positionsService.isInvoiceCreatePositionButtonVisible()"
+                          class="create-position-button-div"
+                          icon="pi pi-plus"
+                          label="{{ tabsService.createOrderPositionTitle | translateIt}}"
+                          pButton
+                          type="button">
+                  </button>
+                </span>
+                <div class="align-buttons-right">
+                  <button type="reset" pButton icon="pi pi-ban"
+                          class="create-position-button-div button-with-margin-left"
+                          (click)="onTableFormCancel()"
+                          label="{{'CANCEL' | translateIt}}"></button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="{{ tabsService.commentsTitle | translateIt}}">
+    <ng-template matTabContent>
+      <mat-tab-group #comtabs animationDuration="0ms" (selectedIndexChange)="selectedSubIndexChange($event)" [selectedIndex]="0">
+
+        <mat-tab label="{{ tabsService.commentDetails | translateIt}}">
+          <ng-template matTabContent>
+            <div class="form">
+              <div class="detail-view-form-title">
+                <h3>
+                  {{ tabsService.commentDetails | translateIt}}
+                </h3>
+              </div>
+              <dynamic-form (submit)="onCustomerFormSubmit()"
+                            (reset)="close()">
+              </dynamic-form>
+            </div>
+            <div>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+      </mat-tab-group>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<custom-p-dialog [updateView]="updateViewFunc"></custom-p-dialog>

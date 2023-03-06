@@ -1,0 +1,69 @@
+.table-content {
+  padding: 30px;
+}
+
+.column-form ::ng-deep .tab-table-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*height: 770px;*/
+}
+
+.price-list-sales ::ng-deep .form-scrollable,
+.price-list-sales ::ng-deep .form-scrollable[_ngcontent] {
+  /*max-height: 305px;*/
+  /* max-height: 405px;*/
+  max-height: 355px;
+}
+
+.price-list-sales ::ng-deep .column-form .table-block-scrollable {
+  max-width: 775px;
+  /*overflow-x: scroll;*/
+}
+
+.price-list-sales ::ng-deep .column-form .address-tab-form-block-scrollable {
+  padding-top: 25px;
+}
+
+/** Test */
+
+::ng-deep .table-block-scrollable .p-datatable .p-datatable-tbody > tr > td.delete-position-button {
+  text-align:center;
+  padding: 0;
+}
+
+::ng-deep .table-block-scrollable .p-datatable .p-datatable-thead > tr > th.delete-position-th {
+  width: 3.5em;
+}
+
+::ng-deep .table-block-scrollable .orders-positions-table .p-datatable table {
+  width: 200%;
+}
+
+/*::ng-deep .table-block-scrollable .delivery-notes-positions-table .p-datatable table {*/
+/*  width: 150%;*/
+/*}*/
+
+/*::ng-deep .table-block-scrollable .invoices-positions-table .p-datatable table {*/
+/*  width: 135%;*/
+/*}*/
+
+::ng-deep .table-block-scrollable .p-datatable table .p-inputtext {
+  width: 105px; /* 47px */
+}
+
+::ng-deep .table-block-scrollable .p-datatable table .p-inputtextarea {
+  width: 100%;
+}
+
+/*.price-list-sales ::ng-deep .p-datatable-footer {*/
+/*  display: none;*/
+/*}*/
+
+.price-list-sales ::ng-deep .align-buttons-left {
+  display: none !important;
+}
+
+.detail-view-form-title {
+  padding: 0 25px 20px !important;
+}

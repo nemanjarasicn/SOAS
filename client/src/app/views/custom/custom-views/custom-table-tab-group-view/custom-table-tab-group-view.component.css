@@ -1,0 +1,34 @@
+.table-content {
+  padding: 30px;
+}
+
+.mat-cell {
+  width: 20px;
+}
+
+.create-btn {
+  width: 130px;
+}
+
+.table-content ::ng-deep .form-scrollable,
+.table-content ::ng-deep .form-scrollable[_ngcontent] {
+  max-height: 543px
+}
+
+.table-content ::ng-deep .mat-autocomplete-trigger {
+  width: 80%;
+}
+
+::ng-deep .address-tab-form-block .address-dlv .form-scrollable,
+::ng-deep .address-tab-form-block .address-dlv .form-scrollable[_ngcontent],
+::ng-deep .address-tab-form-block .address-inv .form-scrollable,
+::ng-deep .address-tab-form-block .address-inv .form-scrollable[_ngcontent]{
+  max-height: 543px !important;
+}
+
+::ng-deep .address-tab-form-block-scrollable .address-dlv .form-scrollable,
+::ng-deep .address-tab-form-block-scrollable .address-dlv .form-scrollable[_ngcontent],
+::ng-deep .address-tab-form-block-scrollable .address-inv .form-scrollable,
+::ng-deep .address-tab-form-block-scrollable .address-inv .form-scrollable[_ngcontent]{
+  max-height: 245px !important;
+}

@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  {{message | translateIt}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="btn btn-primary" (click)="onNoClick()" cdkFocusInitial>
+    {{ 'DIALOG_NO' | translateIt }}&nbsp;
+  </button>
+  <button mat-button class="btn btn-danger mat-dialog-button-yes" [mat-dialog-close]="true">
+    {{ 'DIALOG_YES' | translateIt }}
+  </button>
+</div>

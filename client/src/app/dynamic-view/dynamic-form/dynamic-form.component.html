@@ -1,0 +1,37 @@
+<form class="dynamic-form" [formGroup]="form" (ngSubmit)="onSubmit($event)" >
+  <div class="form-scrollable">
+    <formly-form
+      class="scrollable-table-form"
+      [model]="modalData"
+      [fields]="formlyFieldConfig"
+      [options]="options"
+      [form]="form"
+      (newItmNumEvent)="addItem($event)"
+    >
+    </formly-form>
+  </div>
+  <div class="align-buttons-right" *ngIf="formlyFieldConfig && formlyFieldConfig.length">
+    <button
+      *ngIf="saveMode"
+      type="submit"
+      #saveButton
+      class="form-btn"
+      [disabled]="
+        (
+          !form.valid ||
+          (form.valid && this.disabledFlag)
+        ) ||
+        shouldWaitOnTogetherData()
+"
+    >
+      <mat-icon>save</mat-icon>{{'SAVE' | translateIt}}
+    </button>
+    <button
+      (click)="onCancel()"
+      type="button"
+      class="form-btn"
+    >
+      <mat-icon>cancel</mat-icon>{{'CANCEL' | translateIt}}
+    </button>
+  </div>
+</form>

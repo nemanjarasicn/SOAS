@@ -1,0 +1,26 @@
+.table-content {
+  padding: 30px;
+}
+
+.custbtwoc ::ng-deep .form-scrollable,
+.custbtwoc ::ng-deep .form-scrollable[_ngcontent] {
+  max-height: 543px;
+}
+
+.custbtwoc ::ng-deep .address-tab-form-block .address-dlv .form-scrollable,
+.custbtwoc ::ng-deep .address-tab-form-block .address-dlv .form-scrollable[_ngcontent],
+.custbtwoc ::ng-deep .address-tab-form-block .address-inv .form-scrollable,
+.custbtwoc ::ng-deep .address-tab-form-block .address-inv .form-scrollable[_ngcontent]{
+  max-height: 543px;
+}
+
+.custbtwoc ::ng-deep .address-tab-form-block-scrollable .address-dlv .form-scrollable,
+.custbtwoc ::ng-deep .address-tab-form-block-scrollable .address-dlv .form-scrollable[_ngcontent],
+.custbtwoc ::ng-deep .address-tab-form-block-scrollable .address-inv .form-scrollable,
+.custbtwoc ::ng-deep .address-tab-form-block-scrollable .address-inv .form-scrollable[_ngcontent]{
+  max-height: 240px !important;
+}
+
+.custbtwoc ::ng-deep .mat-autocomplete-trigger {
+  width: 80%;
+}

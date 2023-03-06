@@ -1,0 +1,157 @@
+<link rel="stylesheet" href="main-table.component.css">
+<div class="table-content">
+  <div class="mat-elevation-z8">
+    <div class="two-columns-container">
+      <div class="column-table">
+        <h2>{{title | translateIt | titlecase}}</h2>
+        <form class="header-container">
+            <mat-form-field class="search-box">
+              <mat-label><mat-icon>search</mat-icon></mat-label>
+              <input
+                [formControl]="searchInput"
+                autocomplete="off"
+                matInput
+                matTooltip="{{ 'SEARCH_FOR' | translateIt }}"
+                placeholder="{{ 'SEARCH_FOR' | translateIt }}"
+                type="text"
+              >
+              <button
+                (click)="clearSearch()"
+                *ngIf="searchInput.value"
+                aria-label="Clear"
+                mat-button
+                mat-icon-button
+                matSuffix
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+            <button
+              (click)="createItem()"
+              class="new-item p-button-raised p-button-text"
+              pRipple
+              type="button"
+            >
+              <mat-icon>add</mat-icon> {{title | translateIt}}
+            </button>
+        </form>
+        <div class="table-container">
+          <div class="example-container mat-elevation-z8">
+            <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+              <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+              <div class="example-rate-limit-reached" *ngIf="isRateLimitReached"></div>
+            </div>
+
+            <mat-table
+              [dataSource]="dataSource"
+              [matSortActive]="displayedColumns[0]"
+              matSort
+              matSortDisableClear
+            >
+              <ng-container *ngFor="let header of displayedColumns" [matColumnDef]="header">
+                <mat-header-cell
+                  *matHeaderCellDef mat-sort-header
+                  [style.maxWidth]="displayedColumns.length > 6 ? '160px': 'unset'"
+                >
+                  {{header | translateIt}}
+                </mat-header-cell>
+                <mat-cell
+                  *matCellDef="let element"
+                  [style.maxWidth]="displayedColumns.length > 6 ? '160px': 'unset'"
+                >
+                  <mat-icon *ngIf="element[header] === true" [style.color]="'darkgreen'">done</mat-icon>
+                  <mat-icon *ngIf="element[header] === false" [style.color]="'darkred'">clear</mat-icon>
+                  <span *ngIf="element[header] !== false && element[header] !== true">{{element[header]}}</span>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns; sticky: true"
+                [style.minWidth]="displayedColumns.length > 6 ? 'calc(160px * '+ displayedColumns.length +' )': 'unset'"
+              ></mat-header-row>
+
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns; let i = index"
+                [class.active]="selectedItemIndex === i"
+                [style.minWidth]="displayedColumns.length > 6 ? 'calc(160px * '+ displayedColumns.length +' )': 'unset'"
+                (click)="onItemClick(i)"
+              ></mat-row>
+            </mat-table>
+          </div>
+          <mat-paginator
+            [length]="resultsLength"
+            [pageSizeOptions]="[10, 15, 25, 50, 100]"
+            aria-label="Select page of search results"
+          ></mat-paginator>
+        </div>
+      </div>
+
+      <div class="column-table" [style]="{display: editMode? 'flex' :'none'}">
+
+        <mat-tab-group (selectedTabChange)="onClickTab($event)" [selectedIndex]="selectedTabIndex">
+          <mat-tab [label]="title" tabIndex="0">
+
+            <mat-tab-group
+              *ngIf="fetchTableConfig?.insertTogether || fetchTableConfig?.relatedList"
+
+              [selectedIndex]="selectedSubTabIndex"
+              (selectedTabChange)="onClickSubTab($event)"
+            >
+              <mat-tab [label]="fetchTableConfig.subtitle" tabIndex="0"></mat-tab>
+
+              <ng-container *ngIf="fetchTableConfig?.insertTogether">
+                <mat-tab *ngFor="let item of fetchTableConfig.insertTogether;" [label]="item.subtitle"></mat-tab>
+              </ng-container>
+
+              <ng-container *ngIf="fetchTableConfig?.relatedList">
+                <mat-tab [label]="fetchTableConfig.relatedList.subtitle" [tabIndex]="1" [disabled]="!this.activeItem"></mat-tab>
+              </ng-container>
+            </mat-tab-group>
+
+          </mat-tab>
+
+          <ng-container *ngFor="let viewEditTab of fetchTableConfig?.viewEditTabs">
+            <mat-tab [label]="viewEditTab.tabTitle" [disabled]="!this.activeItem"></mat-tab>
+          </ng-container>
+
+        </mat-tab-group>
+
+        <!-- INSERT/UPDATE MAIN -->
+        <dynamic-form
+          *ngIf="showForm"
+          (submit)="formSubmitted($event)"
+          (reset)="closeEdit()"
+          [togetherData]="togetherData"
+          [formlyFieldConfig]="formConfig"
+          [modalData]="activeItem"
+          [newItemMode]="newItemMode"
+          (emitTmpMainTableForm)="setTmpMainTableForm($event)"
+        >
+        </dynamic-form>
+
+        <div class="example-loading-shade" *ngIf="dynamicTableIsLoadingResults">
+          <mat-spinner *ngIf="dynamicTableIsLoadingResults"></mat-spinner>
+        </div>
+
+        <!-- VIEW FOR `INSERT TOGETHER` / `RELATED LIST` -->
+        <dynamic-table
+            (appendData)="appendDataDynamicTable($event)"
+            (saveData)="saveDataDynamicTable($event)"
+            *ngIf="isMatTable() && fetchTableConfig?.insertTogether?.length > 0 || fetchTableConfig?.relatedList"
+            [style.display]="showForm || (selectedSubTabIndex === 0 && selectedTabIndex === 0)? 'none': 'block'"
+        >
+        </dynamic-table>
+
+        <dynamic-p-table
+          (appendData)="appendDataDynamicTable($event)"
+          (saveData)="saveDataDynamicTable($event)"
+          *ngIf="isPTable() && fetchTableConfig?.insertTogether?.length > 0 || fetchTableConfig?.relatedList"
+          [style.display]="showForm? 'none': 'block'"
+        >
+        </dynamic-p-table>
+
+      </div>
+
+    </div>
+  </div>
+</div>

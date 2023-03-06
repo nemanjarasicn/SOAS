@@ -1,0 +1,63 @@
+
+.btn {
+  margin-left: 20px;
+}
+
+form {
+  padding: 25px 15px 0 15px;
+  background: #fff;
+  height: 100%;
+}
+
+
+button.form-btn:disabled {
+  background: #ddd;
+  cursor: no-drop;
+}
+
+button.form-btn {
+  transition: all 0.2s;
+  cursor: pointer;
+  background: #ed6a1b;
+  color: #fff;
+  width: 120px;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: unset
+}
+
+button.form-btn mat-icon{
+  margin-right: 5px;
+}
+
+.align-buttons-right{
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  padding: 10px 0;
+  width: 100%;
+  justify-content: flex-end;
+  height: max-content;
+}
+
+.align-buttons-left{
+  text-align: left;
+}
+
+.scrollable-table-form {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.form-scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 285px);
+}
+
+.form-scrollable ::ng-deep .form-section-title {
+  padding-left: 15px;
+}

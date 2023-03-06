@@ -1,0 +1,193 @@
+<div class="container">
+
+  <div mat-dialog-title>
+    <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img"
+              aria-hidden="true">import_export
+    </mat-icon>
+    <span> {{data['title'] | translateIt}} </span>
+  </div>
+
+  <div>
+    <p [innerHTML]="data['description']"></p>
+  </div>
+
+  <div [hidden]="submitted">
+    <h3>{{ description | translateIt }}</h3>
+    <form (ngSubmit)="onSubmit()" #stockTransferForm="ngForm">
+
+      <div class="flex-fields">
+
+        <div class="form-group">
+          <b>{{'WAREHOUSING_FROM' | translateIt | titlecase}}</b>
+        </div>
+
+        <div class="form-group field-padding-left">
+          <b>{{'WAREHOUSING_TO' | translateIt | titlecase}}</b>
+        </div>
+
+      </div>
+
+      <div class="flex-fields">
+
+        <div class="form-group">
+          <div class="p-grid ui-fluid">
+            <div class="p-col-4">
+              <label for="ITMNUM">{{ 'ITMNUM' | translateIt | titlecase}}
+                (ArtNr. # Charge. # Lagerplatz # Menge)
+              </label>
+            </div>
+            <div class="p-col-4">
+              <p-autoComplete id="ITMNUM"
+                              #dlgAutocomplete
+                              [(ngModel)]="fromModel.ITMNUM"
+                              name="fromItmnum"
+                              type="search"
+                              [suggestions]="filterItmnums"
+                              (completeMethod)="filterItmnum($event, CONSTANTS.STOCK_TRANSFER_SEARCH_COLUMN_TYPES.ITMNUM)"
+                              (onSelect)="initFields(dlgAutocomplete, CONSTANTS.STOCK_TRANSFER_SEARCH_COLUMN_TYPES.ITMNUM)"
+                              [forceSelection]="true"
+                              required>
+              </p-autoComplete>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group field-padding-left">
+          <label>{{ 'ITMNUM' | translateIt | titlecase}}</label>
+          <input type="text"
+                 class="form-control"
+                 name="toItmnum"
+                 disabled
+                 required
+                 placeholder=""
+                 [(ngModel)]="toModel.ITMNUM"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+
+      <div class="flex-fields">
+
+        <div class="form-group">
+          <label>{{'WAREHOUSING_CHARGE' | translateIt | titlecase}}</label>
+          <input type="text"
+                 class="form-control"
+                 name="fromLot"
+                 disabled
+                 required
+                 placeholder=""
+                 [(ngModel)]="fromModel.LOT"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="form-group field-padding-left">
+          <label>{{'WAREHOUSING_CHARGE' | translateIt | titlecase}}</label>
+          <input type="text"
+                 class="form-control"
+                 name="toLot"
+                 disabled
+                 required
+                 placeholder=""
+                 [(ngModel)]="toModel.LOT"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+
+      <div class="flex-fields">
+        <div class="form-group">
+          <label>{{'WAREHOUSING_STORAGE_LOCATION' | translateIt | titlecase}}</label>
+          <input type="text"
+                 class="form-control"
+                 name="fromLoc"
+                 disabled
+                 required
+                 placeholder=""
+                 [(ngModel)]="fromModel.LOC"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="form-group field-padding-left">
+          <label>{{'WAREHOUSING_STORAGE_LOCATION' | translateIt | titlecase}}</label>
+          <p-autoComplete id="TOLOC"
+                          #toLocAutocomplete
+                          [(ngModel)]="toModel.LOC"
+                          [ngModelOptions]="{standalone: true}"
+                          name="toLoc"
+                          type="search"
+                          [suggestions]="toStoragePlaces"
+                          (completeMethod)="filterItmnum($event, CONSTANTS.STOCK_TRANSFER_SEARCH_COLUMN_TYPES.LOC)"
+                          (onSelect)="initFields(toLocAutocomplete, CONSTANTS.STOCK_TRANSFER_SEARCH_COLUMN_TYPES.LOC)"
+                          [readonly]="this.toLocInputDisabled"
+                          [forceSelection]="true"
+                          required>
+          </p-autoComplete>
+        </div>
+      </div>
+
+      <div class="flex-fields">
+        <div class="form-group">
+          <span class="spanTwoInlineRows paddingRight">
+            <label>{{'WAREHOUSING_QUANTITY' | translateIt | titlecase}} - Physisch</label>
+            <input type="text"
+                   class="form-control"
+                   name="fromQty"
+                   disabled
+                   required
+                   placeholder=""
+                   [(ngModel)]="fromModel.QTY"
+                   [ngModelOptions]="{standalone: true}">
+          </span>
+          <span class="spanTwoInlineRows paddingLeft">
+            <label>{{'WAREHOUSING_QUANTITY' | translateIt | titlecase}} - Verfügbar</label>
+            <input type="text"
+                   class="form-control"
+                   name="fromQty"
+                   disabled
+                   required
+                   placeholder=""
+                   [(ngModel)]="this.toLocInputMax"
+                   [ngModelOptions]="{standalone: true}">
+          </span>
+        </div>
+        <div class="form-group field-padding-left">
+          <div class="p-grid ui-fluid">
+            <div class="p-field p-col-12 p-md-3" style="padding: 0 !important;">
+              <label style="display: block">
+                {{'WAREHOUSING_QUANTITY' | translateIt | titlecase}}
+              </label>
+              <p-inputNumber #toQtyInput
+                             [(ngModel)]="toModel.QTY"
+                             [ngModelOptions]="{standalone: true}"
+                             name="toQty"
+                             mode="decimal"
+                             [showButtons]="true"
+                             [disabled]="this.toQtyInputDisabled"
+                             ariaRequired="this.toQtyInputRequired"
+                             buttonLayout="horizontal"
+                             [min]="this.toLocInputMin"
+                             [max]="this.toLocInputMax"
+                             decrementButtonClass="p-button-danger"
+                             incrementButtonClass="p-button-success"
+                             incrementButtonIcon="pi pi-plus"
+                             decrementButtonIcon="pi pi-minus"
+                             ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="align_buttons_right">
+        <button type="button" class="btn btn-primary"
+                #saveButton
+                [disabled]="(!(toLocAutocomplete.value && toLocAutocomplete.value.length > 0) || !(toQtyInput.value > 0))"
+                (click)="onSaveClick()">{{'TRANSFER' | translateIt | titlecase}}
+        </button>
+        <button type="button" class="btn btn-secondary"
+                (click)="onCancelClick()">{{'CANCEL' | translateIt | titlecase}}</button>
+        <button type="button" class="btn btn-light float-left"
+                (click)="resetForm()">{{'RESET' | translateIt | titlecase}}</button>
+      </div>
+    </form>
+  </div>
+
+</div>

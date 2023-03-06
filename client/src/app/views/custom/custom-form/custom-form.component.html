@@ -1,0 +1,32 @@
+<div class="custom-form-container">
+<!--  <div class="loading-shade"-->
+<!--       *ngIf="isLoadingResults || isRateLimitReached">-->
+<!--    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>-->
+<!--  </div>-->
+  <div class="form" [ngClass]="{'cdk-visually-hidden': isLoadingResults}">
+    <div class="title-block">
+    <span class="new-position-button">
+    </span>
+      <span style="text-align:center">
+      <h3 *ngIf="!newItemMode">
+        {{formTitle | translateIt}}
+      </h3>
+      <h3 *ngIf="newItemMode">
+        {{ createTitle | translateIt}
+      </h3>
+    </span>
+      <span class="new-position-button right-side" *ngIf="newItemMode">
+      <button class="create-button"
+              mat-icon-button color="primary"
+              (click)="createItem();"
+              matTooltip="{{ createTooltip | translateIt}}"
+              *ngIf="!this.formDisabledFlag && !newItemMode">
+        {{ createTitle }}
+        <mat-icon aria-label="add">add</mat-icon>
+      </button>
+    </span>
+    </div>
+    <dynamic-form (submit)="onFormSubmit()" (reset)="close()" *ngIf="isFormViewLoaded">
+    </dynamic-form>
+  </div>
+</div>

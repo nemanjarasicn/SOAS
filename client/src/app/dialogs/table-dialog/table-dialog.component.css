@@ -1,0 +1,130 @@
+header {
+  background: white;
+}
+
+#modal-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  /*color: white;*/
+}
+
+#modal-title {
+  font-size: 20px;
+  color: black;
+  background: white;
+}
+
+#modal-footer {
+  justify-self: right;
+  align-self: center;
+}
+
+#modal-action-button {
+  margin-right: 30px;
+  background-color:#3b3b3b;
+  color: white;
+}
+
+#modal-refresh-button {
+  margin-right: 30px;
+}
+
+#modal-cancel-button {
+  background-color: #4e4e4e;
+  color: white;
+}
+
+.table-content {
+  /*padding: 30px;*/
+  overflow-y: auto;
+  max-height: 480px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  overflow: hidden;
+  width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.p-description {
+  color: black;
+}
+
+.mat-button.mat-accent,
+.mat-icon-button.mat-accent,
+.mat-stroked-button.mat-accent {
+  color: rgba(0,0,0,.54);
+}
+
+.mat-dialog-container {
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: block;
+}
+
+#modal-header,
+#modal-header h1 {
+  margin-top: 0px;
+}
+
+#modal-header h1 {
+  margin-bottom: 0px;
+}
+
+mat-cell:first-of-type, mat-footer-cell:first-of-type, mat-header-cell:first-of-type,
+mat-cell:last-of-type, mat-footer-cell:last-of-type, mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.mat-form-field-infix {
+  width: 300px;
+}
+
+.color_done {
+  color: darkgreen;
+}
+.color_clear {
+  color: darkred;
+}
+
+.mat-column-BATCH_NAME {
+  width: 240px !important;
+}
+
+.mat-column-BATCH_DESCRIPTION {
+  width: 320px !important;
+}
+
+.mat-column-BATCH_INTERVAL {
+  width: 115px !important;
+}
+
+.mat-column-BATCH_ACTIVE {
+  width: 70px !important;
+}
+
+.mat-column-BATCH_LAST_RUN_RESULT{
+  width: 70px !important;
+  text-align: center;
+}

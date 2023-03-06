@@ -1,0 +1,76 @@
+<form #dialogForm>
+  <p-dialog header="{{title | translateIt}}"
+            [(visible)]="showDialog"
+            [focusOnShow]="false"
+            [modal]="true"
+            [style]="{width: dialogWidth}">
+    <div class="p-grid ui-fluid">
+      <div class="p-col-4">
+        <label for="ATTRIBUTE_NAME">{{ 'ATTRIBUTE_NAME' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <p-dropdown (onChange)="attrNameChanged($event)"
+                    [(ngModel)]="selectedAttributeName"
+                    [disabled]="disableDropdown"
+                    [options]="possibleNewAttributes"
+                    [showClear]="true"
+                    id="ATTRIBUTE_NAME"
+                    name="first"
+                    optionLabel="name"
+                    placeholder="{{'PLEASE_SELECT' | translateIt}}">
+        </p-dropdown>
+      </div>
+
+      <div class="p-col-4" *ngIf="showInputAttrData || showCheckboxAttrData || showDropdownAttrData">
+        <label for="ATTRIBUTE_DATA">{{ 'ATTRIBUTE_DATA' | translateIt | titlecase}}</label>
+      </div>
+      <div class="p-col-8">
+        <input type="text"
+               pInputText
+               id="ATTRIBUTE_DATA"
+               placeholder=""
+               [(ngModel)]="selectedAttributeData"
+               name="second"
+               *ngIf="showInputAttrData"/>
+        <p-checkbox name="second"
+                    id="ATTRIBUTE_DATA1"
+                    [(ngModel)]="selectedAttributeCheckBoxData"
+                    [binary]="true"
+                    *ngIf="showCheckboxAttrData">
+        </p-checkbox>
+        <p-dropdown [options]="dataAttributes"
+                    id="ATTRIBUTE_DATA2"
+                    [(ngModel)]="selectedAttributeData"
+                    name="second"
+                    placeholder="{{'PLEASE_SELECT' | translateIt}}"
+                    optionLabel="name"
+                    [showClear]="true"
+                    *ngIf="showDropdownAttrData">
+        </p-dropdown>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="pi pi-plus"
+                class="button-left"
+                (click)="newAttribute($event)"
+                label="{{'CREATE_NEW_ATTRIBUTE' | translateIt | titlecase}}">
+        </button>
+        <button type="button"
+                #dlgSaveButton
+                pButton icon="pi pi-check"
+                (click)="saveForm()"
+                label="{{'SAVE' | translateIt | titlecase}}"
+                [disabled]="getDisabled()">
+        </button>
+        <button type="button"
+                pButton
+                icon="pi pi-times"
+                (click)="cancelDialog()"
+                label="{{ 'CANCEL' | translateIt | titlecase}}"
+                class="ui-button-secondary">
+        </button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</form>

@@ -1,0 +1,20 @@
+.table-content {
+  padding: 30px;
+}
+
+.mat-cell {
+  width: 20px;
+}
+
+.create-btn {
+  width: 130px;
+}
+
+.supply-orders ::ng-deep .form-scrollable,
+.supply-orders ::ng-deep .form-scrollable[_ngcontent] {
+  max-height: 300px;
+}
+
+.supply-orders ::ng-deep .mat-autocomplete-trigger {
+  width: 80%;
+}

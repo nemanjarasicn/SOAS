@@ -1,0 +1,55 @@
+<div class="header-container">
+  <mat-form-field class="search-box" appearance="standard">
+    <mat-label>Search</mat-label>
+    <input
+      autocomplete="off"
+      matInput
+      matTooltip="{{ 'SEARCH_FOR' | translateIt }}"
+      placeholder="{{ 'SEARCH_FOR' | translateIt }}"
+      type="text"
+      (keyup)="applyFilter($event)"
+      #input
+    />
+  </mat-form-field>
+  <button
+    class="new-item p-button-raised p-button-text"
+    pRipple
+    type="button"
+    (click)="addNew()"
+  >
+    <mat-icon>add</mat-icon> {{'NEW' | translateIt}}
+  </button>
+</div>
+<div class="example-container mat-elevation-z8">
+  <mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortDisableClear
+  >
+    <ng-container *ngFor="let header of displayedColumns" [matColumnDef]="header">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{header | translateIt}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[header]}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns; sticky: true"
+      [style.minWidth]="'calc(160px * '+ displayedColumns.length +' )'"
+    >
+    </mat-header-row>
+
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns; let i = index"
+      [class.active]="selectedItemIndex === i"
+      [style.minWidth]="'calc(160px * '+ displayedColumns.length +' )'"
+      (click)="onItemClick(i)"
+    >
+    </mat-row>
+  </mat-table>
+</div>
+<mat-paginator
+  [length]="data?.length || 0"
+  [pageSizeOptions]="[10, 15, 25, 50, 100]"
+  aria-label="Select page of search results"
+></mat-paginator>

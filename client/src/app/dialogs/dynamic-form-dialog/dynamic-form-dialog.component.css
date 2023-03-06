@@ -1,0 +1,3 @@
+.dialog-form ::ng-deep .form-scrollable{
+  max-height: unset !important;
+}

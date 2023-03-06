@@ -1,0 +1,31 @@
+<div class="tab-table-block">
+    <span class="title-span" *ngIf="!newComponentMode">
+      <div class="title-block">
+        <span class="new-position-button"></span>
+        <h3 style="">
+          {{ tableTitle | translateIt}}
+        </h3>
+        <span class="new-position-button right-side"></span>
+      </div>
+      <div class="row-table" [style.display]="(newComponentMode) ? 'none' : 'inherit'">
+        <custom-table [tableUpdate]="tableUpdateFunc" [tableCreate]="tableCreateFunc"></custom-table>
+      </div>
+    </span>
+    <div
+      [ngClass]="{ 'address-tab-form-block-scrollable': !newComponentMode, 'address-tab-form-block': newComponentMode }">
+      <div style="text-align:center">
+        <h3 *ngIf="!newComponentMode">
+          {{ listTitle | translateIt}}
+        </h3>
+        <h3 *ngIf="newComponentMode">
+          {{ createTitle | translateIt}}
+        </h3>
+      </div>
+      <div class="form">
+        <dynamic-form (submit)="onFormSubmit($event)" (reset)="close()"
+                      *ngIf="formConfig">
+        </dynamic-form>
+      </div>
+    </div>
+  </div>
+  

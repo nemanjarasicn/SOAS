@@ -1,0 +1,46 @@
+<!--<mat-tab-group animationDuration="0ms" (selectedTabChange)="onTabChange($event)">-->
+
+<!--  <mat-tab label="{{ formTabTitle | translateIt}}">-->
+
+<!--    <mat-tab-group animationDuration="0ms" (selectedTabChange)="onArticleTabChange($event)">-->
+
+<!--      <mat-tab label="{{ articleTitle | translateIt}}">-->
+
+<!--        <div class="form">-->
+<!--          <div class="title-block">-->
+<!--            <span class="new-position-button">-->
+<!--            </span>-->
+<!--            <span  style="text-align:center">-->
+<!--            <h3 *ngIf="!newArticleAttributesMode">-->
+<!--              {{formTitle | translateIt}}-->
+<!--            </h3>-->
+<!--            <h3 *ngIf="newArticleAttributesMode" >-->
+<!--              {{'CREATE_NEW_ATTRIBUTE' | translateIt}}-->
+<!--            </h3>-->
+<!--              </span>-->
+<!--            <span class="new-position-button right-side" *ngIf="newArticleAttributesMode" >-->
+<!--              <button class="create-button" mat-icon-button color="primary" (click)="createAttributeItem();"-->
+<!--                      matTooltip="{{ createTooltip | translateIt}}" *ngIf="!this.formDisabledFlag && !newArticleAttributesMode" >-->
+<!--                {{ 'CREATE_NEW_ATTRIBUTE' | translateIt }}-->
+<!--                <mat-icon aria-label="add">add</mat-icon>-->
+<!--              </button>-->
+<!--            </span>-->
+<!--          </div>-->
+
+<!--          <dynamic-form [fields]="articleFormConfig" (submit)="onArticleFormSubmit($event)" (reset)="close()"-->
+<!--                        *ngIf="articleFormConfig">-->
+<!--          </dynamic-form>-->
+<!--          <dynamic-form [fields]="articleAttributesFormConfig" (submit)="onArticleAttributeFormSubmit($event)" (reset)="close()"-->
+<!--                        *ngIf="articleAttributesFormConfig">-->
+<!--          </dynamic-form>-->
+
+<!--        </div>-->
+<!--        <div>-->
+<!--        </div>-->
+<!--      </mat-tab>-->
+
+<!--    </mat-tab-group>-->
+
+<!--  </mat-tab>-->
+
+<!--</mat-tab-group>-->

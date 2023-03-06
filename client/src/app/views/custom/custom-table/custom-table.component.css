@@ -1,0 +1,155 @@
+.table-content {
+  padding: 30px;
+}
+
+.custom-table-container .table-block-scrollable table .mat-cell {
+  min-width: unset !important;
+  width: unset !important;
+}
+
+.custom-table-container .table-block-scrollable .table-scroller {
+  display: block;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  background-color: white;
+}
+
+.custom-table-container .table-block-scrollable table td {
+padding: 0 12px;
+}
+
+.custom-table-container .table-block-scrollable table th {
+padding: 0 12px;
+}
+
+.custom-table-container .table-block-scrollable table td:first-of-type {
+padding-left: 24px;
+}
+
+.custom-table-container .table-block-scrollable table th:first-of-type {
+padding-left: 24px;
+}
+
+table {
+width: 100%;
+}
+
+th, td {
+overflow: hidden;
+width: 35%;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+/**
+Remove border around selected table row
+*/
+tr {
+  outline: transparent !important;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  display: block;
+  background-color: #ffffff;
+}
+
+.mat-button.mat-accent,
+.mat-icon-button.mat-accent,
+.mat-stroked-button.mat-accent {
+  color: rgba(0,0,0,.54);
+}
+
+.mat-cell {
+  /*width: 20px;*/
+  width: 120px;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mat-list-item.selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.selected {
+  background-color: whitesmoke;
+}
+
+.address_header {
+  display: flex;
+}
+
+.address_header .mat-icon-button {
+  float: right;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.scrollableTabItem {
+  overflow-y: auto;
+  max-height: 620px;
+}
+
+.mat-subheader {
+  padding: 0;
+}
+
+.delete-btn {
+  color: #3f51b5;
+}
+
+.color_done {
+  color: darkgreen;
+}
+.color_clear {
+  color: darkred;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.custom-table-container {
+  min-height: 245px;
+}
+
+.column-table {
+  background-color: #FFFFFF !important;
+}
+
+.table-top-box {
+  display: flex;
+  background-color: #FFFFFF !important;
+}
+
+.search-box {
+  flex: 1;
+}
+
+.create-btn {
+  width: 210px;
+  height: 54px;
+}

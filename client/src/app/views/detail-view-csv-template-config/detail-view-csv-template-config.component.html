@@ -1,0 +1,111 @@
+<div class="custom-form-container">
+  <!--  <div class="loading-shade"-->
+  <!--       *ngIf="isLoadingResults || isRateLimitReached">-->
+  <!--    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>-->
+  <!--  </div>-->
+    <div class="form" [ngClass]="{'cdk-visually-hidden': isLoadingResults}">
+      <div class="title-block">
+      <span class="new-position-button">
+      </span>
+        <span style="text-align:center">
+        <h3 *ngIf="!newItemMode">
+          {{formTitle | translateIt}}
+        </h3>
+        <h3 *ngIf="newItemMode">
+          {{ createTitle | translateIt}}
+        </h3>
+      </span>
+        <span class="new-position-button right-side" *ngIf="newItemMode">
+        <button class="create-button"
+                mat-icon-button color="primary"
+                (click)="createItem();"
+                matTooltip="{{ createTooltip | translateIt}}"
+                *ngIf="!this.formDisabledFlag && !newItemMode">
+          {{ createTitle }}
+          <mat-icon aria-label="add">add</mat-icon>
+        </button>
+      </span>
+      </div>
+      <dynamic-form (submit)="onFormSubmit($event)" (reset)="close()"
+                    *ngIf="customFormConfig">
+      </dynamic-form>
+      <span style="text-align:center">
+        <h3>
+          {{formTitle | translateIt}}
+        </h3>
+      </span>
+      <div class="column-form">
+        <custom-table [tableUpdate]="tableUpdateFunc" [tableCreate]="tableCreateFunc"></custom-table>
+        <button type="button" pButton  #saveButton
+            class="create-position-button-div"
+            label="{{'+ AddColumn' | translateIt}}"
+            (click)="setShowAddInputField();">
+      </button>
+      </div>
+
+      <div class="inputFieldContainer" [style.display]="ShowAddInputField ? 'block' : 'none'" >
+        <form [formGroup]="ngForm" (ngSubmit)="onAddColumnsSubmit()" >
+            <div class="form-group field-padding-left">
+                <label>{{ 'Short description' | translateIt | titlecase}}</label>
+                <input type="text"
+                    class="form-control"
+                    name="shortDescription"
+                    formControlName="SHORT_DESC"
+                    required
+                    placeholder=""
+                    >
+            </div>
+            <div class="form-group field-padding-left">
+              <input type="hidden"
+                  class="form-control"
+                  name="id"
+                  formControlName="ID"
+                  required
+                  placeholder=""
+                  >
+          </div>
+            <div class="form-group field-padding-left">
+                <label>{{ 'Required' | translateIt | titlecase}}</label>
+                <input type="checkbox"
+                    class="mat-checkbox-input"
+                    name="requiredColumn"
+                    formControlName="REQUIRED"
+                    required
+                    (change)="onCheckboxChange($event)"
+                    >
+            </div>
+
+            <div class="align-buttons-right-add">
+              <mat-form-field appearance="fill">
+                <mat-label>Choose import type constants<!---{{'choose_csv_import_type' | translateIt}}--></mat-label>
+                <mat-select formControlName="CSV_TYPE_CONSTANTS" >
+                    <mat-option value=""></mat-option>
+                    <mat-option *ngFor="let item of importTypesConstants" [value]="item" >{{item.label}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button type="button" pButton  #saveButton icon="pi pi-save"
+                  class="custom-button"
+                  label="{{'+' | translateIt}}"
+                  (click)="addImportTypeConsants()"
+                  >
+              </button>
+            </div>
+
+            <span style="text-align:left;color:red " *ngFor="let item of importTypesConstantsTmp">
+              <p>
+                {{item.id}} - {{item.label}}
+              </p>
+            </span>
+
+            <div class="align-buttons-right">
+                <button type="button" pButton  #saveButton icon="pi pi-save"
+                    class="custom-button"
+                    label="{{'ADD' | translateIt}}"
+                    (click)="onAddColumnsSubmit()"
+                    >
+                </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

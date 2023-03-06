@@ -1,0 +1,58 @@
+.mat-toolbar-row, .mat-toolbar-single-row {
+  padding: 0 !important;
+}
+
+.sticky-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+}
+
+.logger {
+  background-color: #353535;
+  height: 30px;
+  line-height: 32px;
+  font-weight: lighter;
+}
+
+.logger i {
+  font-size: 22px;
+  line-height: 30px;
+  color: white;
+  margin-left: 5px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.logger p {
+  display: inline-block;
+  margin: 0;
+  color: white;
+  line-height: 20px;
+}
+
+.mat-checkbox-input {
+  margin-left: 5px;
+}
+
+.mat-checkbox-label {
+  margin-left: 5px;
+  margin-right: 10px;
+  color: white;
+}
+
+.progress-bar-animation {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+}
+
+.progress-bar-animation .rate-limit-reached {
+
+}
+
+.db-span-color {
+  color: #adff2f;
+}

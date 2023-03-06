@@ -1,0 +1,657 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~primeng/resources/primeng.min.css";
+@import '~primeng/resources/themes/bootstrap4-light-blue/theme.css';
+@import '~primeicons/primeicons.css';
+
+html,
+body {
+  /*height: 100%;*/
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-weight: lighter;
+}
+
+.mat-tab-label .mat-tab-label-content{
+  font-weight: normal;
+  color: #333;
+}
+
+.column-table, .column-form, .mat-sidenav{
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12),
+              0 2px 2px rgba(0,0,0,0.12),
+              0 4px 4px rgba(0,0,0,0.12),
+              0 8px 8px rgba(0,0,0,0.12),
+              0 16px 16px rgba(0,0,0,0.12);
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #353535;
+}
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #353535;
+}
+.mat-menu-panel{
+  border-radius: 0 !important;
+}
+
+.btn{
+  border-radius: 0;
+}
+.p-button:enabled:active {
+  background: #f06a15;
+  color: #ffffff;
+  border-color: #f06a15;
+}
+.p-button:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+}
+.p-button {
+  color: #ffffff;
+  background: #f06a15;
+  border: 1px solid #f06a15;
+  border-radius: 0;
+}
+.p-button:enabled:hover {
+  background: #f16811;
+  border-color: #f16811;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #f06a15;
+  border-color: #f06a15;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #f06a15;
+  border-color: #f06a15;
+}
+.btn-primary:hover {
+  background-color: #f16811;
+  border-color: #f16811;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #f06a15;
+}
+
+.form-section-title{
+  font-weight: lighter;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #f06a15;
+  border-color: #f06a15;
+  color: #ffffff;
+}
+.p-paginator .p-paginator-pages .p-paginator-page {
+  color: #f06a15;
+}
+.p-paginator .p-paginator-current {
+  color: #f06a15;
+}
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+  color: #f06a15;
+}
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+  background: rgba(240, 106, 21, 0.5);
+  border-color: rgba(240, 106, 21, 0.5);
+  color: #f06a15;
+}
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+  background: rgba(240, 106, 21, 0.5);
+  border-color: rgba(240, 106, 21, 0.5);
+  color: #f06a15;
+}
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: rgba(0,0,0,.7);
+}
+
+.mat-radio-button:nth-child(2){
+  padding-left: 10px;
+}
+
+.p-button.p-button-raised{
+  box-shadow: none;
+  color: #535353;
+}
+
+.p-button.p-button-text:enabled:hover {
+  background: rgba(123, 123, 123, 0.04);
+  color: #353535;
+  border-color: transparent;
+}
+
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: #eee;
+  border-radius: 0 !important;
+  border: 1px solid #ccc;
+}
+
+.mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-appearance-fill.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
+  transform: translateY(-0.3em) scale(0.65);
+}
+
+
+.app-header {
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+  background-color: #353535 !important;
+}
+
+.page {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height:100vh;
+  background-image: url("/assets/background.png");
+}
+
+.content {
+  /*padding: var(--space) var(--space) 0;*/
+  width: 100%;
+  overflow: auto;
+  background-image: url("/assets/background.png");
+}
+
+.footer, header{
+  flex: none;
+  width: 100%;
+  margin: auto auto 0 auto;
+  background:gray;
+}
+
+.container_center_wrap{
+  text-align: center;
+  width: 100%;
+  margin-top: 20em;
+}
+
+.soas {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.box {
+  position: relative;
+  top: 0;
+  opacity: 1;
+  float: left;
+  padding: 60px 50px 40px 50px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  z-index: 5;
+  max-width: 330px;
+}
+
+.box.back {
+  transform: scale(.95);
+  -webkit-transform: scale(.95);
+  -ms-transform: scale(.95);
+  top: -20px;
+  opacity: .8;
+  z-index: -1;
+}
+
+.box:before {
+  content: "";
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  position: absolute;
+  top: -10px;
+  background: rgba(255, 255, 255, .6);
+  left: 0;
+  transform: scale(.95);
+  -webkit-transform: scale(.95);
+  -ms-transform: scale(.95);
+  z-index: -1;
+}
+
+.login-wrapper .login-form {
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
+}
+
+.login-form .login-full-width,
+.login-form .btn-block {
+  width: 100%;
+  display: block;
+}
+
+.login-wrapper mat-card-header {
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 700;
+}
+
+.login-wrapper mat-card-header mat-card-title {
+  font-size: 30px;
+  margin: 0;
+}
+
+.login-wrapper .mat-card {
+  padding: 40px 70px 50px;
+}
+
+.login-wrapper .mat-stroked-button {
+  border: 1px solid currentColor;
+  line-height: 54px;
+  background: #FFF7FA;
+}
+
+.login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0.8375em 0.55em;
+}
+
+.mat-icon {
+  cursor: pointer;
+  height: 20px;
+  width: 30px;
+  margin-bottom: 5px;
+}
+
+.material-icons {
+  font-size: 24px;
+}
+
+.mat-expansion-indicator::after {
+  color: #353535;
+}
+
+.mat-expansion-panel-body {
+  background: white;
+  padding: 0 0 10px 10px !important;
+}
+
+.field-subcontainer .mat-expansion-panel-body {
+  padding: 0 0 10px 10px !important;
+}
+
+.field-subcontainer .mat-expansion-panel-header {
+  height: 44px !important;
+}
+
+.custom-table-container .mat-form-field-label {
+  width: auto;
+}
+
+.mat-select-value{
+  text-align: center;
+}
+
+.mat-form-field-infix {
+  width: 245px !important;
+}
+
+.address-tab-form-block-scrollable .scrollable-table-form {
+  max-height: 245px;
+}
+
+.table-content {
+  padding: 12px !important;
+}
+
+html input[disabled] {
+  cursor: default;
+  border: none;
+  padding-left: 0;
+}
+button[disabled]{
+  cursor: default;
+  border: none;
+  padding-left: 10px;
+}
+
+  /* Workaround to let whole autocomplete suggestions list visible */
+.ui-autocomplete-panel {
+  position: static;
+}
+
+/*.ui-fluid .ui-inputfield[size] {*/
+/*  width: auto;*/
+/*}*/
+
+/*.ui-dialog {*/
+/*  width: auto !important;*/
+/*}*/
+
+.red-button {
+  background-color: #c01120;
+  color: #ffffff;
+  border-color: #c01120;
+}
+
+.ui-toast-top-right {
+  top: 40px !important;
+  right: 17px !important;
+}
+
+.p-toast-top-right {
+  right: 15px !important;
+  top: 55px !important;
+}
+
+.two-columns-container {
+  display: flex;
+}
+
+.two-columns-container,
+.two-columns-container[_ngcontent-dmx-c12] {
+  min-height: 842px;
+  max-height: 842px;
+}
+
+/**
+  For Form inside a 2 tabs structure: 2 x 48px height
+ */
+.scrollable-table-form,
+.scrollable-table-form[_ngcontent]{
+  max-height: 560px;
+}
+
+/**
+  For Form inside a 1 tab structure: 1 x 48px height
+ */
+/*.scrollable-table-form,*/
+/*.scrollable-table-form[_ngcontent] {*/
+/*  max-height: 595px;*/
+/*}*/
+
+/**
+  For Form without tabs:
+ */
+/*.scrollable-table-form,*/
+/*.scrollable-table-form[_ngcontent] {*/
+/*  max-height: 595px;*/
+/*}*/
+
+.mat-tab-body-wrapper {
+  /*max-height: 650px;*/
+}
+
+.custom-form-container,
+.form {
+  max-height: 685px;
+}
+
+.form {
+  width: 100%;
+}
+
+.mat-tab-body,
+.mat-tab-body-active {
+  /*max-height: 700px;*/
+}
+
+/* Disable scroll for form with 2 tabs structure: orders */
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  overflow: hidden;
+  /*width: 35%;*/ /* commented out because of p-table header width issues */
+  text-overflow: ellipsis;
+  white-space: pre-wrap; /* nowrap;*/
+}
+
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  display: block;
+  background-color: #ffffff;
+}
+
+.column-table,
+.column-form {
+  float: left;
+}
+
+.column-table {
+  flex: 1.01;
+  min-width: 700px;
+
+}
+
+.column-form {
+  flex: 1;
+  background: white;
+  padding: 30px;
+  margin-left: 10px;
+  min-width: 700px;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  /*border-left: 5px solid #42A948;*/
+}
+
+.ng-invalid:not(form)  {
+  /*border-left: 5px solid #a94442;*/
+}
+
+.mat-list-item.selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.align_buttons_right {
+  text-align: right;
+  padding-top: 20px;
+}
+
+.selected {
+  background-color: lightgrey;
+}
+
+.address_header {
+  display: flex;
+}
+
+.address_header .mat-icon-button {
+  float: right;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+
+.scrollableTabItem {
+  overflow-y: auto;
+  max-height: 620px;
+}
+
+.mat-subheader {
+  padding: 0;
+}
+
+.color_done {
+  color: darkgreen;
+}
+.color_clear {
+  color: darkred;
+}
+
+.mat-button.mat-accent,
+.mat-icon-button.mat-accent,
+.mat-stroked-button.mat-accent {
+  color: rgba(0,0,0,.54);
+}
+
+.mat-button-wrapper, .mat-expansion-panel-header-text{
+  font-weight: lighter;
+}
+
+.mat-drawer-content{
+  background-color: #eee;
+}
+
+
+.mat-cell,
+.mat-header-cell {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.create-btn {
+  width: 110px;
+}
+
+.delete-btn {
+  color: #3f51b5;
+}
+
+.loading-shade {
+  position: absolute;
+  top: -40px;
+  left: -40px; /* -215px */
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-shade ::ng-deep .mat-progress-spinner circle,
+.loading-shade ::ng-deep .mat-spinner circle {
+  stroke: #434040 !important;
+}
+
+/*.btn-primary,*/
+/*.mat-checkbox-checked.mat-accent .mat-checkbox-background,*/
+/*.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {*/
+/*  background-color: #337ab7; !* #007ad9; *!*/
+/*}*/
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  /*color: #337ab7;*/
+}
+
+.p-datatable .p-datatable-header,
+.p-datatable .p-datatable-footer {
+  background: #ffffff;
+}
+
+.p-datatable .p-datatable-footer {
+  border-bottom: 0;
+}
+
+.detail-view-form-title {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  padding: 0.5rem 0.5rem;
+}
+
+.mat-drawer.mat-drawer-side {
+  z-index: 0 !important;
+}
+
+.p-dialog-mask {
+  padding-left: 160px;
+}
+
+.button-with-margin-left {
+  margin-left: 25px !important;
+}
+
+/** detail-view-tab-group, price-list-sales */
+.align-buttons-right {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  padding-top: 0;
+  margin: 0;
+  height: 40px;
+}
+
+.align-buttons-left {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+  margin: 0;
+  height: 40px;
+}
+
+.address-tab-table-block {
+  display: block;
+  margin: 0;
+}
+
+.address-tab-table-block .title-block {
+  display: flex;
+}
+
+.address-tab-table-block .new-position-button {
+  flex: 1;
+}
+
+.address-tab-table-block .new-position-button.right-side {
+  flex: 1;
+  text-align: center;
+  align-self: flex-end;
+}
+
+.address-tab-table-block h3 {
+  flex: 1;
+  text-align:center;
+}
+
+.address-tab-table-block .table-block-scrollable {
+  overflow-y: auto;
+  /*max-height: 250px;*/
+}
+
+.address-tab-table-block .table-block-scrollable table {
+  margin: auto;
+  width: 100%;
+}
+
+.address-tab-form-block {
+  display: block;
+}
+
+/* remove border top, as a result of appearance: 'fill' */
+.mat-form-field-infix {
+  border-top: 0 !important;
+}

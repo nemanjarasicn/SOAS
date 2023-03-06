@@ -1,0 +1,40 @@
+.table-content {
+  padding: 30px;
+}
+
+.articles .column-form ::ng-deep .custom-form-container,
+.articles .column-form ::ng-deep .form {
+  max-height: 735px;
+  /*font-size: 14px;*/
+}
+
+.articles ::ng-deep .mat-tab-body-content {
+  min-height: 740px;
+  height: auto;
+}
+
+.articles .column-form ::ng-deep .form-scrollable,
+.articles .column-form ::ng-deep .scrollable-table-form,
+.articles .column-form ::ng-deep .scrollable-table-form[_ngcontent]{
+  max-height: 675px;
+}
+
+.add-attribute-button {
+  margin-top: -15px;
+}
+
+.new-position-button {
+  position: absolute;
+  width: fit-content;
+  text-align: left;
+  margin-top: -20px;
+}
+
+::ng-deep .attributes .custom-form-container {
+  padding-top: 20px;
+}
+
+::ng-deep .attributes .row {
+  margin-right: 0px;
+  margin-left: 0px;
+}

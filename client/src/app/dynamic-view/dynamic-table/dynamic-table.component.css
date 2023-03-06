@@ -1,0 +1,59 @@
+.dynamic-table {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+.table-container {
+  max-height: 685px;
+  height: 100%;
+}
+
+
+.header-container {
+  display: flex;
+  background: #fff;
+}
+
+.example-container {
+  max-height: calc(100% - 60px);
+  overflow: auto;
+  display: block;
+}
+
+.header-container .search-box {
+  width: 100%
+}
+
+.mat-header-cell, .mat-footer-cell, .mat-cell {
+  max-width: 160px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 48px;
+  line-height: 48px;
+  display: block;
+  padding: 0 12px;
+}
+
+.mat-row {
+  cursor: pointer
+}
+
+.mat-row.active {
+  background: #cccccc;
+}
+
+button.new-item {
+  height: 42px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.new-item mat-icon {
+  margin: 0
+}

@@ -1,0 +1,18 @@
+<form class="dynamic-form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div class="scrollable-table-form">
+    <div class="two-dynamic-forms">
+      <div class="left-dynamic-form">
+        <ng-container class="left-dynamic-form" *ngFor="let field of leftFields;" dynamicField [field]="field" [group]="form">
+        </ng-container>
+      </div>
+      <div class="right-dynamic-form">
+        <ng-container class="right-dynamic-form" *ngFor="let field of rightFields;" dynamicField [field]="field" [group]="form">
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="align-buttons-right">
+    <button type="submit" class="btn btn-primary save" [disabled]="form.pristine || (!form.valid || (form.valid && this.disabledFlag))">{{'SAVE' | translateIt}}</button>
+    <button type="reset" class="btn btn-secondary cancel">{{'CANCEL' | translateIt}}</button>
+  </div>
+</form>

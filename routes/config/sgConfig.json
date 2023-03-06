@@ -1,0 +1,11 @@
+{
+  "user": "sa",
+  "password": "Sage2012",
+  "server": "192.168.77.121\\SAGE",
+  "database": "x3v65p",
+  "options": {
+    "encrypt": false
+  },
+  "requestTimeout": 30000,
+  "connectionTimeout": 30000
+}

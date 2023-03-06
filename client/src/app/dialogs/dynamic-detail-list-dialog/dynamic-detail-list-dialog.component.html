@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="detail-container">
+    <h3>{{dialogData.title}}</h3>
+    <dynamic-form
+      (reset)="closeEditDynamicForm()"
+      [formlyFieldConfig]="dialogData.formlyFieldConfig"
+      [modalData]="dialogData.modalData"
+      [saveMode]="false"
+    >
+    </dynamic-form>
+  </div>
+  <div class="related-list-container">
+    <mat-tab-group
+      *ngIf="dialogData?.showTogether"
+      [selectedIndex]="selectedTabIndex"
+      (selectedTabChange)="onClickTab($event)"
+    >
+      <mat-tab *ngFor="let item of dialogData.showTogether;" [label]="item.subTubTitle"></mat-tab>
+    </mat-tab-group>
+
+    <dynamic-table
+      *ngIf="isMatTable() && staticInput.data?.length > 0"
+      [isStatic]="true"
+      [staticInput]="staticInput"
+    >
+    </dynamic-table>
+
+    <dynamic-p-table
+      *ngIf="isPTable() && staticInput.data?.length > 0"
+      [isStatic]="true"
+      [staticInput]="staticInput"
+    >
+    </dynamic-p-table>
+  </div>
+</div>

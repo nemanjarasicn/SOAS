@@ -1,0 +1,13 @@
+<div class="page-not-found-content">
+  <div class="page-not-found-center" *ngIf="pageLoaded">
+    <p class="page-not-found-title">404</p>
+    <p class="page-not-found-text">Seite wurde nicht gefunden!</p>
+    <p>
+      <button mat-raised-button
+              (click)="this.redirectToHome()"
+              matTooltip="">
+        {{ 'Zurück zur Startseite' | translateIt }}
+      </button>
+    </p>
+  </div>
+</div>

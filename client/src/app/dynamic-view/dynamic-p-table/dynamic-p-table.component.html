@@ -1,0 +1,154 @@
+<div class="header-container">
+  <mat-form-field class="search-box" appearance="standard">
+    <mat-label>Search</mat-label>
+    <input
+      autocomplete="off"
+      matInput
+      matTooltip="{{ 'SEARCH_FOR' | translateIt }}"
+      placeholder="{{ 'SEARCH_FOR' | translateIt }}"
+      type="text"
+      (keyup)="applyFilter($event)"
+      #input
+    />
+  </mat-form-field>
+  <button
+    class="new-item p-button-raised p-button-text"
+    pRipple
+    type="button"
+    (click)="addNew()"
+  >
+    <mat-icon>add</mat-icon>
+    {{'NEW' | translateIt}}
+  </button>
+</div>
+<div class="example-container mat-elevation-z8">
+  <p-table #pTable
+           [autoLayout]="true"
+           [columns]="cols"
+           [rows]="rows"
+           [value]="data"
+           [paginator]="true"
+           [resizableColumns]="true"
+           [scrollable]="false"
+           [showCurrentPageReport]="true"
+           class="orders-positions-table"
+           currentPageReportTemplate="{{'P_TABLE_SHOWING_ENTRIES'| translateIt}}"
+           dataKey="{{dataKey}}"
+           scrollHeight="200px"
+           selectionMode="single">
+    <ng-template let-columns pTemplate="colgroup">
+      <colgroup>
+        <ng-container *ngFor="let col of columns" [ngSwitch]="col.disabled">
+          <col *ngSwitchCase="0" [style.width]="col.width">
+        </ng-container>
+      </colgroup>
+    </ng-template>
+    <ng-template let-columns pTemplate="header">
+      <tr>
+        <ng-container *ngFor="let col of columns" [ngSwitch]="col.disabled">
+          <th *ngSwitchCase="0" [pSortableColumn]="col.field">
+            {{col.header | translateIt}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </ng-container>
+        <th *ngIf="showDeletePositionButtonInTH()" class="delete-position-th"></th>
+      </tr>
+    </ng-template>
+    <ng-template let-columns="columns" let-op let-rowIndex="rowIndex" pTemplate="body">
+      <tr [style.background]="highlightSetPosition(this.refTable, rowIndex)">
+        <ng-container *ngFor="let col of columns; let i = index" [ngSwitch]="col.type">
+          <ng-container *ngIf="!col.disabled">
+            <td *ngSwitchCase="'input'"
+                id="id_{{this.data[rowIndex]?.ID}}_td_{{rowIndex}}_{{i}}"
+                pEditableColumn>
+              <p-cellEditor id="cell_{{rowIndex}}_{{i}}">
+                <ng-template pTemplate="input">
+                  <input type="text" pInputText
+                         [(ngModel)]="op[col.field]"
+                         (keydown)="consumeKey($event)"
+                         pInputText
+                         placeholder="{{'VALIDATOR_MESSAGE_IS_REQUIRED'| translateIt}}"
+                         required>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{this.showPositionStateText('ord', col.field, op[col.field])}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td *ngSwitchCase="'inputNumber'"
+                id="id_{{this.data[rowIndex]?.ID}}_td_{{rowIndex}}_{{i}}"
+                pEditableColumn>
+              <p-cellEditor id="cell_{{rowIndex}}_{{i}}">
+                <ng-template pTemplate="input">
+                  <input type="number" pInputText
+                         [(ngModel)]="op[col.field]"
+                         [max]="getInputNumberMax(col.field)"
+                         [min]="getInputNumberMin()"
+                         (keydown)="consumeKey($event)"
+                         mode="decimal"
+                         placeholder="{{'VALIDATOR_MESSAGE_IS_REQUIRED'| translateIt}}"
+                         required>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{this.showPositionStateText('ord', col.field, op[col.field])}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td *ngSwitchCase="'textarea'"
+                id="id_{{this.data[rowIndex]?.ID}}_td_{{rowIndex}}_{{i}}"
+                pEditableColumn>
+              <p-cellEditor id="cell_{{rowIndex}}_{{i}}">
+                <ng-template pTemplate="input">
+                 <textarea
+                   [(ngModel)]="op[col.field]"
+                   (keydown)="consumeKey($event)"
+                   cols="{{col.cols ? col.cols : 35}}"
+                   name="{{col.field}}"
+                   pInputTextarea
+                   placeholder="{{'VALIDATOR_MESSAGE_IS_REQUIRED'| translateIt}}"
+                   required
+                   rows="{{col.rows ? col.rows : 5}}">
+                 </textarea>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{this.showPositionStateText('ord', col.field, op[col.field])}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td *ngSwitchCase="'span'"
+                id="id_{{this.data[rowIndex]?.ID}}_td_{{rowIndex}}_{{i}}"
+            >
+              <span *ngIf="showPositionAsSpan(this.refTable, rowIndex, col.field)">
+                {{this.showPositionStateText('ord', col.field, op[col.field])}}
+              </span>
+              <ng-template pTemplate="output">
+                {{this.showPositionStateText('ord', col.field, op[col.field])}}
+              </ng-template>
+            </td>
+          </ng-container>
+        </ng-container>
+        <td *ngIf="showDeleteButtonForSetPosition(rowIndex)" class="delete-position-button">
+          <button (click)="deletePosition(op, rowIndex)"
+                  class="ui-button-danger"
+                  hideDelay="350"
+                  icon="pi pi-times"
+                  pButton
+                  pCancelEditableRow
+                  pTooltip="{{'DELETE' | translateIt}}"
+                  showDelay="1500"
+                  tooltipPosition="top"
+                  type="button">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="10"
+            style="text-align:left">{{'NO_POSITIONS_FOUND' | translateIt}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

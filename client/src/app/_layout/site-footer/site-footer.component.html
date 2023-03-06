@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <div class="sticky-footer">
+    <div class="logger">
+      <i aria-hidden="true" class="fa fa-user"></i>
+      <p>
+        {{'LOGGED_IN_AS' | translateIt}}: {{user}} |
+        {{'USER_ROLE' | translateIt}} : {{role}} |
+        {{'USER_LANGUAGE' | translateIt}} : {{language | translateIt}} |
+        DB: <span class="db-span-color">{{dbName}}</span> |
+      </p>
+      <input id="language" type="hidden" value="{{language}}">
+      <input (change)="sidenavOpenedClicked.emit()" [checked]="sidenavOpened" [placeholder]=""
+             class="mat-checkbox-input" type="checkbox"/>
+      <span class="mat-checkbox-label">{{'SIDE_MENU' | translateIt}}</span>
+      <div class="progress-bar-animation" *ngIf="getIsLoading() || getIsRateLimitReached()">
+        <mat-progress-bar mode="buffer" *ngIf="getIsLoading()"></mat-progress-bar>
+        <div class="rate-limit-reached" *ngIf="getIsRateLimitReached()"></div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

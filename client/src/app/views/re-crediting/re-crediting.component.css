@@ -1,0 +1,20 @@
+.table-content {
+  padding: 30px;
+}
+
+table {
+  width: 100%;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  display: block;
+  background-color: #ffffff;
+}

@@ -1,0 +1,97 @@
+<div id="modal-content-wrapper">
+  <div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <header id="modal-header">
+    <h1 id="modal-title">{{ modalData.title }}</h1>
+  </header>
+  <section id="modal-body">
+    <p class="p-description">{{ modalData.description }}</p>
+
+    <div class="table-content">
+      <!--<p>{{tableTitle | soasTranslateIt}}</p>-->
+
+      <div class="mat-elevation-z8">
+
+        <mat-form-field>
+          <mat-label>{{ searchTitle | translateIt }}</mat-label>
+          <input #searchInput matInput (keyup)="applyFilter($event)" placeholder="z.B.: Suchbegriff"
+                 matTooltip="{{ 'SEARCH_FOR' | translateIt}}">
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortActive="BATCH_ACTIVE"
+               matSortDirection="desc">
+
+          <div *ngFor="let item of displayedColumns; let columnIndex = index">
+
+            <ng-container *ngIf="item !='action' && 'USER_SOAS_ID'" matColumnDef="{{item}}">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-column-{{item}}">
+              <span>
+                {{item | translateIt}}
+              </span>
+              </th>
+
+              <td mat-cell *matCellDef="let element">
+
+            <span [ngSwitch]="item">
+              <ng-template ngSwitchCase="BATCH_ACTIVE">
+                <mat-icon class="material-icons color_{{element[item.trim()] | booleanToMatIcon}}">
+                {{element[item.trim()] | booleanToMatIcon}}</mat-icon>
+              </ng-template>
+              <ng-template ngSwitchCase="BATCH_LAST_RUN_RESULT">
+                <mat-icon class="material-icons color_{{(element[item.trim()] !== 'FAILED') | booleanToMatIcon}}">
+                {{(element[item.trim()] !== 'FAILED') | booleanToMatIcon}}</mat-icon>
+              </ng-template>
+              <ng-template ngSwitchDefault>
+                {{element[item]}}
+              </ng-template>
+            </span>
+
+              </td>
+            </ng-container>
+
+          </div>
+
+          <!-- actions -->
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>
+              <button mat-icon-button color="primary" (click)="createItem(null)"
+                      matTooltip="{{ createTooltip | translateIt}}">
+               {{ createTitle | translateIt }}
+                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+              </button>
+            </mat-header-cell>
+
+            <mat-cell *matCellDef="let row; let i=index;">
+
+              <button mat-icon-button color="accent" (click)="editItem(row)">
+                <mat-icon aria-label="Edit" matTooltip="{{ editTooltip | translateIt}}">edit</mat-icon>
+              </button>
+
+              <button mat-icon-button color="accent" (click)="deleteItem(i, row)">
+                <mat-icon aria-label="Delete" matTooltip="{{ deleteTooltip | translateIt}}">delete</mat-icon>
+              </button>
+
+            </mat-cell>
+
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]=PAGINATOR_ELEMENTS_PER_SIDE showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+
+  </section>
+  <footer id="modal-footer">
+    <button mat-raised-button id="modal-refresh-button" (click)="refreshFunction()">
+      {{ 'REFRESH' | translateIt }}
+    </button>
+    <button mat-raised-button id="modal-action-button" (click)="okFunction()">
+      {{ modalData.actionButtonText }}
+    </button>
+  </footer>
+</div>

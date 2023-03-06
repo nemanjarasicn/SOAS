@@ -1,0 +1,149 @@
+.mat-dialog-container {
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: block;
+}
+
+.mat-dialog-content {
+  text-align: center !important;
+  padding-bottom: 25px !important;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.btn.btn-success {
+  float: right;
+}
+
+.btn.btn-secondary {
+  float: left;
+}
+
+.csv-choose {
+  padding: 50px;
+}
+
+.mat-dialog-actions .mat-button-base+.mat-button-base {
+  margin-left: 365px;
+}
+
+.mat-button.mat-accent,
+.mat-icon-button.mat-accent,
+.mat-stroked-button.mat-accent {
+  color: rgba(0,0,0,.54);
+}
+
+.mat-dialog-container {
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: block;
+}
+
+.mat-dialog-content .inputField {
+  padding: 25px 20px 50px;
+  width: 100%;
+}
+
+.mat-menu-item .mat-icon {
+  margin-right: 16px;
+  vertical-align: middle;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  display: block;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.container {
+  width: 800px !important;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.form-group {
+  width: 400px;
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.align_buttons_right {
+  text-align: right;
+  padding-top: 30px;
+}
+
+.flex-fields {
+  display: flex;
+}
+
+.field-padding-left {
+  margin-left: 15px;
+}
+
+/* P-Grid styles */
+
+/*.p-grid {*/
+/*  display: -ms-flexbox;*/
+/*  display: flex;*/
+/*  -ms-flex-wrap: wrap;*/
+/*  flex-wrap: wrap;*/
+/*  margin-right: -.5rem;*/
+/*  margin-left: -.5rem;*/
+/*  margin-top: -.5rem;*/
+/*}*/
+
+/*.p-col {*/
+/*  -ms-flex-positive: 1;*/
+/*  flex-grow: 1;*/
+/*  -ms-flex-preferred-size: 0;*/
+/*  flex-basis: 0;*/
+/*  padding: .5rem;*/
+/*}*/
+
+p-autoComplete,
+p-inputNumber {
+  display: grid;
+}
+
+p-autoComplete ::ng-deep input {
+  width: 100%;
+}
+
+.reset-button {
+
+}
+
+.spanTwoInlineRows {
+  width: 50%;
+  display: inline-block;
+}
+
+.spanTwoInlineRows.paddingLeft {
+  padding: 0 0 0 5px;
+}
+
+.spanTwoInlineRows.paddingRight {
+  padding: 0 5px 0 0;
+}
+
+.mat-dialog-title {
+  margin: 20px 0 20px;
+}

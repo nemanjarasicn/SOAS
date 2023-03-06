@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+  <div mat-dialog-title>
+    <mat-icon _ngcontent-blm-c10="" class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">import_export</mat-icon>
+    <span> CSV-Import <!--{{message | translateIt}}--> </span>
+  </div>
+  <div>
+    <p [innerHTML]="data['description']"></p>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="file" class="inputField" formControlName="file" [writeFile]="true" (change)="onFileChange($event)" accept=".csv">
+
+    <button type="button" class="btn btn-secondary" (click)="onCancelClick()">{{'Cancel'  | translateIt }}</button>
+    <button type="submit" class="btn btn-success" [disabled]="!form.valid">Upload</button>
+  </form>
+</div>

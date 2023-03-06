@@ -1,0 +1,21 @@
+.table-content {
+  padding: 30px;
+}
+
+.create-btn {
+  width: 110px;
+}
+
+.delete-btn {
+  color: #3f51b5;
+}
+
+::ng-deep .address-tab-form-block .form-scrollable,
+::ng-deep .address-tab-form-block .form-scrollable[_ngcontent] {
+  max-height: 685px !important;
+}
+
+::ng-deep .address-tab-form-block-scrollable .form-scrollable,
+::ng-deep .address-tab-form-block-scrollable .form-scrollable[_ngcontent] {
+  max-height: 315px !important; /* 255px */
+}

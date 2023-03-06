@@ -1,0 +1,7 @@
+p-dialog .p-grid.ui-fluid {
+  min-height: 350px;
+}
+
+::ng-deep .button-left {
+  margin-right: 27%;
+}

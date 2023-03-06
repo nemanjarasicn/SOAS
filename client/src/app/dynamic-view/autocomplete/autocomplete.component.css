@@ -1,0 +1,13 @@
+
+.field-full-width {
+  width: 100%;
+}
+
+.inputButtonClass {
+  display: flex;
+}
+
+.inputButtonClass .btn{
+  margin: 15px 10px 15px 20px;
+}
+

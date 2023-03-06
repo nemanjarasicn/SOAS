@@ -1,0 +1,14 @@
+<h2>{{ dialogData.listTitle | translateIt}}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <div class="form">
+    <dynamic-form
+      (submit)="dialogData.onFormSubmit($event)"
+      (reset)="dialogData.close()"
+    >
+    </dynamic-form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{'CLOSE' | translateIt}}</button>
+</mat-dialog-actions>

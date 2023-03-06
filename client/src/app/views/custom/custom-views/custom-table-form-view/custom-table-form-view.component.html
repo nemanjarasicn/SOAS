@@ -1,0 +1,13 @@
+<div class="table-content">
+  <div class="mat-elevation-z8">
+    <div class="two-columns-container">
+      <div class="column-table" [style.display]="isMainTableViewLoaded">
+        <custom-table [tableUpdate]="tableUpdateFunc" [tableCreate]="tableCreateFunc"></custom-table>
+      </div>
+      <div class="column-form" [style.display]="shouldDisplayForm()">
+        <custom-form [loadForm]="loadFormFunc" [resetForm]="resetFormFunc" [saveForm]="saveFormFunc">
+        </custom-form>
+      </div>
+    </div>
+  </div>
+</div>

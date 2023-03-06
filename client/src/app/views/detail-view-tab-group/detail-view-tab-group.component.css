@@ -1,0 +1,159 @@
+
+.address-tab-column-list,
+.address-tab-column-form {
+  float: left;
+}
+
+.address-tab-column-list {
+  width: 15%;
+}
+
+.address-tab-column-form {
+  width: calc(87% - 20px);
+  padding-left: 20px;
+}
+
+.orders-tab-column-form {
+  /*padding-left: 20px;*/
+}
+
+.create-button {
+  text-align: right;
+}
+
+.btn {
+  margin-left: 20px;
+}
+
+.selected {
+  background-color: lightgrey;
+}
+
+.form-list {
+  margin: 0 20px 0 20px;
+}
+
+/*.matTabContent {*/
+/*  overflow-y: auto;*/
+/*  max-height: 570px;*/
+/*}*/
+
+.mat-form-field-full-width {
+  width: 150px;
+  text-align: center;
+}
+
+.mat-form-field-infix {
+  border-top-width: 0 !important;
+}
+
+.align-buttons-center {
+  text-align: center;
+  /*margin-top: -10px;*/
+}
+
+.align-buttons-center .btn {
+  margin-left: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  margin-right: -16px;
+}
+
+/* Positions input classes */
+
+.input-itmnum,
+.input-orders_number {
+  width: 100%;
+}
+.input-order_qty,
+.input-assigned_qty{
+  width: 50%;
+}
+/*
+::ng-deep .orders-positions-table-form .align-buttons-right {
+  position: relative;
+  width: 100%;
+  margin-top: -52px;
+}
+*/
+
+.align-buttons-right {
+  width: 50%;
+}
+
+.orders-positions-table-form .align-buttons-right {
+  /*contain: content;*/
+}
+
+.create-position-button-div {
+  text-align: left;
+}
+
+::ng-deep .table-block-scrollable .p-datatable-footer ng-star-inserted,
+.create-position-button-div{
+  /*width: 50%;*/
+}
+
+.scrollable-table-form {
+  overflow-y: auto;
+  max-height: 570px;
+}
+
+.mat-form-field .mat-error {
+  font-size: 9px !important;
+}
+
+.mat-form-field-infix input {
+  font-size: 12px;
+}
+
+/*.ui-editable-column {*/
+/*  color: red;*/
+/*  pointer-events: all;*/
+/*pointer-events: auto !important;*/
+/*}*/
+
+.createDNButton,
+.createINButton,
+.deleteDNButton{
+  /*margin-top: -65px;*/
+  margin-top: -40px;
+  position: absolute;
+}
+
+.form-scrollable[_ngcontent-fna-c22] {
+  max-height: 587px;
+}
+
+::ng-deep .table-block-scrollable .p-datatable .p-datatable-tbody > tr > td.delete-position-button {
+  text-align:center;
+  padding: 0;
+}
+
+::ng-deep .table-block-scrollable .p-datatable .p-datatable-thead > tr > th.delete-position-th {
+  width: 3.5em;
+}
+
+::ng-deep .table-block-scrollable .orders-positions-table .p-datatable table {
+  width: 200%;
+}
+
+::ng-deep .table-block-scrollable .delivery-notes-positions-table .p-datatable table {
+  width: 150%;
+}
+
+::ng-deep .table-block-scrollable .invoices-positions-table .p-datatable table {
+  width: 135%;
+}
+
+::ng-deep .table-block-scrollable .p-datatable table .p-inputtext {
+  width: 105px;
+}
+
+::ng-deep .table-block-scrollable .p-datatable table .p-inputtextarea {
+  width: 100%;
+}

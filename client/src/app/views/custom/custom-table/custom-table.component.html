@@ -1,0 +1,93 @@
+<div class="custom-table-container">
+  <div *ngIf="isLoadingResults || isRateLimitReached"
+       class="loading-shade">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <!--    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
+    <!--      SOAS API rate limit has been reached. It will be reset in one minute.-->
+    <!--    </div>-->
+  </div>
+  <div class="table-top-box">
+    <mat-form-field class="search-box">
+      <mat-label>{{title | translateIt | titlecase}}&nbsp;<mat-icon>search</mat-icon>
+      </mat-label>
+      <input #searchInput (input)="dataSource?.queryBy({search: searchInput.value})"
+             matInput
+             matTooltip="{{ 'SEARCH_FOR' | translateIt }}"
+             placeholder="{{ 'SEARCH_FOR' | translateIt }}"
+             type="text">
+      <button (click)="clearSearch()" *ngIf="searchInput.value" aria-label="Clear" mat-button mat-icon-button matSuffix>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <span>
+    <button (click)="createItem();" *ngIf="showCreateButton" class="p-button-raised p-button-text"
+            icon="pi pi-plus" label="{{ createTitle | translateIt}}"
+            pButton
+            pRipple
+            type="button"
+            [disabled]="disabledCreateButton">
+<!--<mat-icon aria-label="icon-button">add</mat-icon>-->
+    </button>
+    </span>
+  </div>
+  <div class="table-block-scrollable">
+    <div class="table-scroller">
+      <table #customTable *ngIf="dataSource" [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+        <tbody #myRow *ngFor="let item of columnsToDisplay; let columnIndex = index">
+          <ng-container matColumnDef="{{item}}">
+            <th #sortHeader (click)="dataSource.sortBy({order: sortHeader._arrowDirection, property: item})"
+                *matHeaderCellDef mat-header-cell
+                mat-sort-header="{{item}}">
+              <span>
+                {{item | translateIt | titlecase}}
+              </span>
+            </th>
+            <ng-container *matCellDef="let element">
+              <td *ngIf="element[item] === true || element[item] === false" mat-cell>
+                <mat-icon class="material-icons color_{{element[item] | booleanToMatIcon}}">
+                  {{element[item] | booleanToMatIcon}}
+                </mat-icon>
+              </td>
+              <td *ngIf="element[item] !== true && element[item] !== false" mat-cell>
+                <span [ngSwitch]="item">
+                  <!-- START: Columns customization -->
+                  <!-- custbtwob NAME_ADDR fix for too long name: 730 OBI -->
+                  <ng-template ngSwitchCase="NAME_ADDR">{{ (element[item] | slice:0:25) + '...' }}</ng-template>
+                  <ng-template ngSwitchCase="ITMDES">{{ (element[item] | slice:0:40) + '...' }}</ng-template>
+                  <ng-template ngSwitchCase="CURRENCY">{{getCurrencySymbol(element['CURRENCY'])}}</ng-template>
+                  <ng-template
+                    ngSwitchCase="PRICE_NET">{{element[item] | currencySpace: getCurrencyName(element['CURRENCY']):"symbol-narrow"}}</ng-template>
+                  <ng-template
+                    ngSwitchCase="PRICE_BRU">{{element[item] | currencySpace: getCurrencyName(element['CURRENCY']):"symbol-narrow"}}</ng-template>
+                  <ng-template
+                    ngSwitchCase="ORDERAMOUNT_NET">{{element[item] | currencySpace: getCurrencyName(element['CURRENCY']):"symbol-narrow"}}</ng-template>
+                  <ng-template
+                    ngSwitchCase="ORDERAMOUNT_BRU">{{element[item] | currencySpace: getCurrencyName(element['CURRENCY']):"symbol-narrow"}}</ng-template>
+
+                  <ng-template ngSwitchCase="ORDERS_DATE">{{element[item] | date:'dd.MM.yyyy'}}</ng-template>
+                  <ng-template ngSwitchCase="SHIPPING_DATE">{{element[item] | date:'dd.MM.yyyy'}}</ng-template>
+                  <ng-template ngSwitchCase="INVOICES_DATE">{{element[item] | date:'dd.MM.yyyy'}}</ng-template>
+                  <!-- END: Columns customization -->
+                  <ng-template ngSwitchDefault >{{element[item]}}</ng-template>
+                </span>
+              </td>
+            </ng-container>
+          </ng-container>
+        </tbody>
+        <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
+        <tr  (click)="setClickedRow(row, i)" (keydown)="tableKeydown($event, row, i)"
+            *matRowDef="let row; columns: columnsToDisplay; let i= index;"
+            [ngClass]="{selected: this.selectionModel?.isSelected(row)}"
+            mat-row
+            tabindex=0
+        >
+        </tr>
+      </table>
+    </div>
+    <mat-paginator (page)="fetchData($event)" *ngIf="dataSource?.page$ | async as page"
+                   [hidePageSize]="true" [length]="page.totalElements"
+                   [pageIndex]="page.number" [pageSizeOptions]=PAGINATOR_ELEMENTS_PER_SIDE
+                   [pageSize]="getPageSize(page.size)" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

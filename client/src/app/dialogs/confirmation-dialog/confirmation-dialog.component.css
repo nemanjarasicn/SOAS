@@ -1,0 +1,16 @@
+.mat-dialog-container {
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: block;
+}
+
+.mat-dialog-content {
+  text-align: center !important;
+  padding-bottom: 25px !important;
+}
+
+.mat-dialog-button-yes {
+  margin-left: 170px !important;
+}
